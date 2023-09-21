@@ -7,7 +7,7 @@ import Nav from './components/Nav';
 function App() {
   return (
     <>
-    
+    <h1>khushi</h1>
     </>
   );
 
