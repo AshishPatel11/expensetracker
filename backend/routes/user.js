@@ -1,25 +1,37 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user')
+
+//API endpoint for user registration
 router.post('/signup', async (req, res) => {
     try {
-        // Check whether the Sem with this name exists already
+        // Check whether the user already exist or not
         let userdata = await User.findOne({ userName: req.body.userName });
         if (userdata) {
             return res.status(400).json({ error: "UserName already exist!!" })
         }
 
-        // Create a new sem
-        newUser = await User.create({
+        // Else create new User
+        let newUser = await User.create({
             uid: req.body.uid,
             userName: req.body.userName,
             email: req.body.email,
             password: req.body.password
         });
+
         res.json(newUser)
     } catch (error) {
-        console.log(error.message);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send(error.message);
+    }
+})
+
+
+//API endpoint for the User login
+router.post('/login', async (req, res) => {
+    try {
+
+    } catch (error) {
+        res.status(500).send(error.message);
     }
 })
 
