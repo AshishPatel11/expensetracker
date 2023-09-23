@@ -1,25 +1,27 @@
-import './CSS/Nav.css'
+import React from 'react'
+import './CSS/Nav.css';
+import logo from './assets/logo.svg'
 import { Link } from 'react-router-dom'
-function Nav() {
-
-
+const Nav = () => {
     return (
-        <>
-            <header>
-                <nav>
-                    <div className="logo">
-                    </div>
-                    <div className="icon">
-                        <span className="toggle">☰</span>
-                    </div>
-                    <ul className="list-item">
-                        
-                    </ul>
-                </nav>
-            </header>
+        <header>
+            <nav>
+                <div class="logo">
+                    <img src={logo} />
+                </div>
 
-        </>
-    );
+                <ul class="list-item">
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/">Income</Link></li>
+                    <li><Link to="/">Expense</Link></li>
+                    <li><Link to="/">Usage</Link></li>
+                    <li><Link to="/">Notifications</Link></li>
+                    <li><Link to="/">Profile</Link></li>
+                </ul>
+            </nav>
+        </header>
+
+    )
 }
 
-export default Nav;
+export default Nav

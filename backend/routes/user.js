@@ -29,7 +29,7 @@ router.post('/signup', async (req, res) => {
 //API endpoint for the User login
 router.post('/login', async (req, res) => {
     try {
-
+        
     } catch (error) {
         res.status(500).send(error.message);
     }
