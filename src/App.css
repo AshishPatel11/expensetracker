@@ -1,38 +1,142 @@
-body {
-    background: #bdc3c7;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #2c3e50, #bdc3c7);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+@import url(https://fonts.googleapis.com/css?family=Croissant+One:regular);
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Mooli:regular);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-container {
+    background-color: #e7e9eb;
+    height: 100vh;
+    padding: 50px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form {
+    background-color: #f2f4f7;
+    background: linear-gradient(to bottom, #cdcdff, #aef1cb);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 5px 8px 5px #888888;
+}
+
+.animation {
+    background: linear-gradient(to bottom, #cdcdff, #aef1cb);
+    border-bottom-right-radius: 90px;
+    height: 80vh;
+}
+
+.animation-div {
+    height: 80vh;
     background-color: white;
-    border-radius: 5px;
-    width: 550px;
-    margin: 20px auto;
-    padding: 20px;
-    /* height: 600px; */
 }
 
-.form-body {
+.form-class {
+    background-color: white;
+    border-top-left-radius: 90px;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.animation-div::before {
+    content: "Expense Tracker";
+    font-family: 'Croissant One';
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+    font-size: 28px;
+    font-weight: 600;
+    width: 30%;
+}
+
+.input-fields {
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     text-align: left;
-    padding: 20px 10px;
+    width: 100%;
 }
 
-.form-body>* {
-    padding: 5px;
+.form-title * {
+    font-family: 'exo';
+    color: rgb(30, 30, 30);
+    background: -webkit-linear-gradient(#b9b9ff, #89ffbc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 38px;
+    font-weight: 900;
+}
+
+.form__input {
+    border: none;
+    outline: none;
+    background-color: #f2f4f7;
+    padding: 10px 10px;
+    border-radius: 12px;
+    font-family: 'mooli';
+}
+
+.form__input::placeholder {
+    font-family: 'mooli';
 }
 
 .form__label {
-    width: 40%;
+    font-family: 'mooli';
+    font-weight: 600;
 }
 
-.form_input {
-    width: 60%;
+.submit-btn {
+    background: linear-gradient(to bottom, #cdcdff, #aef1cb);
+    height: 42px;
+    width: 120px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'exo';
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.500);
+    transition: 0.3s ease box-shadow;
 }
 
-.footer {
-    text-align: center;
+.submit-btn:hover {
+    box-shadow: 0px 0px 10px 1px black;
+}
+
+.submit-btn:active {
+    box-shadow: none;
+}
+
+.footer-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-link {
+    color: rgb(0, 64, 255);
+    font-family: 'mooli';
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.mg {
+    margin: 10px 0px;
+}
+
+.mooli {
+    font-family: 'mooli'
 }
