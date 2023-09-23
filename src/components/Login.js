@@ -5,6 +5,33 @@ import { Link } from 'react-router-dom'
 
 
 function Login() {
+    const [UserData, setUserData] = useState({});
+
+    const handleSubmit = async event => {
+        event.preventDefault();
+
+        const response = await fetch("http://localhost:5000/api/login", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(UserData)
+        });
+        const apiObj = await response.json()
+        if (apiObj.error) {
+            alert(apiObj.error);
+        }
+        else if (apiObj.userName) {
+            alert("Login Successfull !!")
+        }
+        else {
+            alert(apiObj.error.message)
+        }
+    }
+
+    const onChange = (event) => {
+        setUserData({ ...UserData, [event.target.name]: event.target.value })
+    }
     return (
         <div className='form-container'>
 
@@ -21,16 +48,16 @@ function Login() {
                             <h1>LOGIN</h1>
                         </div>
 
-                        <form className="form-body">
+                        <form onSubmit={handleSubmit} className="form-body">
 
                             <div className="username input-fields">
                                 <label className="form__label" htmlFor="userName">User Name </label>
-                                <input className="form__input" type="text" id="userName" placeholder="User Name" />
+                                <input className="form__input" name='userName' required type="text" id="userName" onChange={onChange} placeholder="User Name" />
                             </div>
 
                             <div className="password input-fields">
                                 <label className="form__label" htmlFor="password">Password </label>
-                                <input className="form__input" type="password" id="password" placeholder="Password" />
+                                <input className="form__input" name='password' required type="password" onChange={onChange} id="password" placeholder="Password" />
                             </div>
                             <div className="footer-btn mg">
                                 <Link className='sign-link' to="/"><p className='sign-link'>Forgot Password?</p></Link>

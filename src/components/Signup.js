@@ -3,6 +3,39 @@ import Lottie from "lottie-react";
 import animationSvg from './assets/form_animation.json'
 import { Link } from 'react-router-dom'
 function Signup() {
+    const [UserData, setUserData] = useState({});
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        if (UserData.password !== UserData.cpassword) {
+            alert("Both Password should be same!!")
+        }
+        else {
+            const response = await fetch('http://localhost:5000/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(UserData),
+            });
+
+            const apiObj = await response.json()
+            if(apiObj.error){
+                alert(apiObj.error);
+            }
+            else if(apiObj.uid){
+                alert("Registration Successfull !!");
+            }
+            else{
+                alert(apiObj.error.message);
+            }
+        }
+    }
+
+    const onChange = (event) => {
+        setUserData({ ...UserData, [event.target.name]: event.target.value })
+    }
     return (
         <div className='form-container'>
 
@@ -17,34 +50,34 @@ function Signup() {
                         <div className='form-title'>
                             <h1>REGISTRATION</h1>
                         </div>
-                        <form className="form-body">
+                        <form onSubmit={handleSubmit} className="form-body">
 
                             <div className="username input-fields">
                                 <label className="form__label" htmlFor="userName">User Name </label>
-                                <input className="form__input" type="text" id="userName" placeholder="User Name" />
+                                <input className="form__input" name="userName" required type="text" onChange={onChange} id="userName" placeholder="User Name" />
                             </div>
 
                             <div className="firstname input-fields">
                                 <label className="form__label" htmlFor="firstName">First Name </label>
-                                <input className="form__input" type="text" id="firstName" placeholder="First Name" />
+                                <input className="form__input" name="firstName" required type="text" onChange={onChange} id="firstName" placeholder="First Name" />
                             </div>
 
 
                             <div className="lastname input-fields">
                                 <label className="form__label" htmlFor="lastName">Last Name </label>
-                                <input type="text" name="" id="lastName" className="form__input" placeholder="LastName" />
+                                <input type="text" id="lastName" name="lastName" required className="form__input" onChange={onChange} placeholder="LastName" />
                             </div>
                             <div className="email input-fields">
                                 <label className="form__label" htmlFor="email">Email </label>
-                                <input type="email" id="email" className="form__input" placeholder="Email" />
+                                <input type="email" id="email" name='email' required className="form__input" onChange={onChange} placeholder="Email" />
                             </div>
                             <div className="password input-fields">
                                 <label className="form__label" htmlFor="password">Password </label>
-                                <input className="form__input" type="password" id="password" placeholder="Password" />
+                                <input className="form__input" name='password' required type="password" id="password" onChange={onChange} placeholder="Password" />
                             </div>
                             <div className="confirm-password input-fields">
                                 <label className="form__label" htmlFor="confirmPassword">Confirm Password </label>
-                                <input className="form__input" type="password" id="confirmPassword" placeholder="Confirm Password" />
+                                <input className="form__input" name="cpassword" required type="password" id="confirmPassword" onChange={onChange} placeholder="Confirm Password" />
                             </div>
 
                             <div className="footer-btn">
