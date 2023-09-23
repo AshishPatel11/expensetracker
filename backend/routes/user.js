@@ -29,7 +29,16 @@ router.post('/signup', async (req, res) => {
 //API endpoint for the User login
 router.post('/login', async (req, res) => {
     try {
-        
+        let logindata = await User.findOne({ userName: req.body.userName });
+        if (logindata) {
+            return res.status(400).json({ error: "UserName not Valid" })
+        }
+            let login = await User.findOne({
+                userName: req.body.userName,
+                password: req.body.password
+            });
+
+            res.json(login)
     } catch (error) {
         res.status(500).send(error.message);
     }
