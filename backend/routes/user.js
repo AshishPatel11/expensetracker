@@ -11,7 +11,7 @@ router.post('/signup', async (req, res) => {
         if (userdata) {
             return res.status(400).json({ error: "UserName already exist!!" })
         }
-
+        //function for random user id generate
         function generateUid() {
 
             // Declare a digits variable 
