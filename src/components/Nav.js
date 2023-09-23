@@ -11,8 +11,8 @@ const Nav = () => {
                 </div>
 
                 <ul class="list-item">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/">Income</Link></li>
+                    <li><Link to="/home">Home</Link></li>
+                    <li><Link to="/Income">Income</Link></li>
                     <li><Link to="/">Expense</Link></li>
                     <li><Link to="/">Usage</Link></li>
                     <li><Link to="/">Notifications</Link></li>
