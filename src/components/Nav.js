@@ -7,7 +7,7 @@ const Nav = () => {
         <header>
             <nav>
                 <div class="logo">
-                    <img src={logo} />
+                    <img src={logo} alt="logo" />
                 </div>
 
                 <ul class="list-item">
