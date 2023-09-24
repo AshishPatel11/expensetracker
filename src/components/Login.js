@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Lottie from "lottie-react";
 import animationSvg from './assets/form_animation.json'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import loadingsvg from './assets/loading.json'
 
 function Login() {
     const [UserData, setUserData] = useState({});
     const [Loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     //form submit event handlling function
     const handleSubmit = async event => {
@@ -32,6 +34,8 @@ function Login() {
         else if (apiObj.userName) {
             setLoading(false)
             alert("Login Successfull !!")
+            navigate("/Home");
+
         }
         //if API resonses 500 request
         else {
