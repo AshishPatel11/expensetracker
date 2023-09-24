@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import Lottie from "lottie-react";
 import animationSvg from './assets/form_animation.json'
 import { Link } from 'react-router-dom'
-
+import loadingsvg from './assets/loading.json'
 
 function Login() {
     const [UserData, setUserData] = useState({});
+    const [Loading, setLoading] = useState(false);
 
     //form submit event handlling function
     const handleSubmit = async event => {
         event.preventDefault();
 
+        setLoading(true)
         //fetching API
         const response = await fetch("http://localhost:5000/api/login", {
             method: "POST",
@@ -23,16 +25,20 @@ function Login() {
         const apiObj = await response.json()
         //if API responses error
         if (apiObj.error) {
+            setLoading(false)
             alert(apiObj.error);
         }
         //if API responses successfully
         else if (apiObj.userName) {
+            setLoading(false)
             alert("Login Successfull !!")
         }
         //if API resonses 500 request
         else {
+            setLoading(false)
             alert(apiObj.error.message)
         }
+        setLoading(false)
     }
 
     //input change event handling function
@@ -79,10 +85,17 @@ function Login() {
                                 <Link className='sign-link' to="/signup"><p className='sign-link'>Signup here!</p></Link>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
+            {Loading &&
+                <div className='loader-container'>
+                    <div className='loader'>
+                        <Lottie animationData={loadingsvg} />
+                    </div>
+                </div>
+            }
         </div>
 
     )

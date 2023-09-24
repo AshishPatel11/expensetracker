@@ -1,41 +1,53 @@
 import React, { useState } from 'react';
 import Lottie from "lottie-react";
 import animationSvg from './assets/form_animation.json'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import loadingsvg from './assets/loading.json'
 
 function Forgotpass() {
     const [UserData, setUserData] = useState({});
+    const [Loading, setLoading] = useState(false);
+
+    const navigate = useNavigate()
+    const userName = window.history.state.usr.userName;
 
     //form submit event handlling function
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
+
         //if password & confirm password do not match
         if (UserData.password !== UserData.cpassword) {
+            setLoading(false)
             alert("Both Password should be same!!")
         }
+
         else {
 
             //fetching API
-            const response = await fetch('http://localhost:5000/api/signup', {
+            const response = await fetch('http://localhost:5000/api/updatepass', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(UserData),
+                body: JSON.stringify({ ...UserData, userName: userName }),
             });
 
-            const apiObj = await response.json()
-            //if API responses error
-            if (apiObj.error) {
-                alert(apiObj.error);
+            const apiObj = await response.json();
+            if (apiObj.success) {
+                setLoading(false)
+                alert(`Password updated successfully`);
+                navigate("/");
             }
-            //if API responses successfully
-            else if (apiObj.uid) {
-                alert("Registration Successfull !!");
+            else if (apiObj.fail) {
+                setLoading(false)
+                alert(apiObj.fail)
+                navigate("/");
             }
-            //if API responses 500
             else {
-                alert(apiObj.error.message);
+                setLoading(false)
+                alert(apiObj.error.message)
+                navigate("/")
             }
         }
     }
@@ -62,11 +74,6 @@ function Forgotpass() {
 
                         <form onSubmit={handleSubmit} className="form-body">
 
-                            <div className="username input-fields">
-                                <label className="form__label" htmlFor="userName">User Name </label>
-                                <input className="form__input" name="userName" required type="text" onChange={onChange} id="userName" placeholder="User Name" />
-                            </div>
-
                             <div className="password input-fields">
                                 <label className="form__label" htmlFor="password">Password </label>
                                 <input className="form__input" name='password' required type="password" id="password" onChange={onChange} placeholder="Password" />
@@ -78,22 +85,19 @@ function Forgotpass() {
                             </div>
 
                             <div className="footer-btn">
-                                <button type="submit" className="submit-btn">Signup</button>
-                            </div>
-
-                            <p className='footer-btn mg'>––––––OR––––––</p>
-
-                            <div className="footer-btn mg">
-                                <p className='mooli'>Already have an account?</p>
-
-                                <Link className='sign-link' to="/">
-                                    <p className='sign-link'>Login here!</p>
-                                </Link>
+                                <button type="submit" className="submit-btn">Reset</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            {Loading &&
+                <div className='loader-container'>
+                    <div className='loader'>
+                        <Lottie animationData={loadingsvg} />
+                    </div>
+                </div>
+            }
         </div>
 
     )

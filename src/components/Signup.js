@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import Lottie from "lottie-react";
 import animationSvg from './assets/form_animation.json'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import loadingsvg from './assets/loading.json'
 function Signup() {
     const [UserData, setUserData] = useState({});
+    const [Loading, setLoading] = useState(false);
 
+    const navigate = useNavigate()
     //form submit event handlling function
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true)
         //if password & confirm password do not match
         if (UserData.password !== UserData.cpassword) {
+            setLoading(false)
             alert("Both Password should be same!!")
         }
         else {
@@ -27,14 +31,18 @@ function Signup() {
             const apiObj = await response.json()
             //if API responses error
             if (apiObj.error) {
+                setLoading(false)
                 alert(apiObj.error);
             }
             //if API responses successfully
             else if (apiObj.uid) {
+                setLoading(false)
                 alert("Registration Successfull !!");
+                navigate("/")
             }
             //if API responses 500
             else {
+                setLoading(false)
                 alert(apiObj.error.message);
             }
         }
@@ -109,6 +117,13 @@ function Signup() {
                     </div>
                 </div>
             </div>
+            {Loading &&
+                <div className='loader-container'>
+                    <div className='loader'>
+                        <Lottie animationData={loadingsvg} />
+                    </div>
+                </div>
+            }
         </div>
 
     )

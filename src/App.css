@@ -74,6 +74,7 @@
     font-family: 'exo';
     color: rgb(30, 30, 30);
     background: -webkit-linear-gradient(#a1a1ff, #3eff91);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 38px;
@@ -140,4 +141,19 @@
 
 .mooli {
     font-family: 'mooli'
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(50%);
+}
+
+.loader-container {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    backdrop-filter: blur(1px);
+    cursor: wait;
 }
