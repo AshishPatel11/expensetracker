@@ -65,7 +65,7 @@ function Login() {
                             </div>
 
                             <div className="footer-btn mg">
-                                <Link className='sign-link' to="/"><p className='sign-link'>Forgot Password?</p></Link>
+                                <Link className='sign-link' to="/OtpAuth"><p className='sign-link'>Forgot Password?</p></Link>
                             </div>
 
                             <div className="footer-btn">
