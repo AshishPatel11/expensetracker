@@ -73,11 +73,12 @@
 .form-title * {
     font-family: 'exo';
     color: rgb(30, 30, 30);
-    background: -webkit-linear-gradient(#b9b9ff, #89ffbc);
+    background: -webkit-linear-gradient(#a1a1ff, #3eff91);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 38px;
     font-weight: 900;
+    text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .form__input {
