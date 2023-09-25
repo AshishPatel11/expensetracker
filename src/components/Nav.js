@@ -1,23 +1,61 @@
 import React from 'react'
 import './CSS/Nav.css';
-import logo from './assets/logo.svg'
+import { LayoutDashboard, Repeat, Wallet, Settings } from 'lucide-react'
+import logo from './assets/logo-svg.svg'
 import { Link } from 'react-router-dom'
 const Nav = () => {
     return (
         <header>
-            <nav>
-                <div class="logo">
-                    <img src={logo} alt="logo" />
+            <nav className='nav-container'>
+                <div className="logo-container">
+                    <img className='logo-svg' src={logo} alt='logo'></img>
                 </div>
+                <div className='nav-body'>
+                    <div className='nav-links'>
+                        <ul>
 
-                <ul class="list-item">
-                    <li><Link to="/home">Home</Link></li>
-                    <li><Link to="/Income">Income</Link></li>
-                    <li><Link to="/">Expense</Link></li>
-                    <li><Link to="/">Usage</Link></li>
-                    <li><Link to="/">Notifications</Link></li>
-                    <li><Link to="/">Profile</Link></li>
-                </ul>
+                            <li className='link-list'>
+                                <div>
+                                    <LayoutDashboard color="#f0f0f0" />
+                                </div>
+                                <div>
+                                    <Link to='/home'>Dashboard</Link>
+                                </div>
+                            </li>
+
+                            <li className='link-list'>
+                                <div>
+                                    <Repeat color="#f0f0f0" />
+                                </div>
+                                <div>
+                                    <Link to='/home'>Expense</Link>
+                                </div>
+                            </li>
+
+                            <li className='link-list'>
+                                <div>
+                                    <Wallet color="#f0f0f0" />
+                                </div>
+                                <div>
+                                    <Link to='/home'>Income</Link>
+                                </div>
+                            </li>
+
+                            <li className='link-list'>
+                                <div>
+                                    <Settings color="#f0f0f0" />
+                                </div>
+                                <div>
+                                    <Link to='/home'>Setting</Link>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div className='nav-footer'>
+
+                </div>
             </nav>
         </header>
 
