@@ -94,7 +94,7 @@ const Nav = () => {
 
                                 <li className='link-list'>
                                     <div>
-                                        <Link to='/home'>
+                                        <Link to='/Logout'>
                                             <div className='link-grid'>
                                                 <span>
                                                     <LogOut color="#f0f0f0" />

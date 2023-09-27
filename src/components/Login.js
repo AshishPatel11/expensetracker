@@ -32,6 +32,7 @@ function Login() {
         }
         //if API responses successfully
         else if (apiObj.userName) {
+            localStorage.setItem("user", JSON.stringify(apiObj))
             setLoading(false)
             alert("Login Successfull !!")
             navigate("/Home");

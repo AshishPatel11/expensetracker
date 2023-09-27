@@ -11,7 +11,7 @@ import OtpAuth from './components/OtpAuth'
 import Forgotpass from './components/Forgotpass';
 import OtpVerify from './components/OtpVerify';
 import Home from './components/Home';
-
+import Logout from './components/Logout'
 
 
 //this component contain all the routes of the website
@@ -25,7 +25,8 @@ function DefinedRoutes() {
                 <Route path='/Forgotpass' element={<Forgotpass />} />
                 <Route path='/OtpVerify' element={<OtpVerify />} />
                 <Route path='/Home' element={<Home />} />
-           </Routes>
+                <Route path='/Logout' element={<Logout />} />
+            </Routes>
 
         </>
     );
