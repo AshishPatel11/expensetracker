@@ -1,17 +1,41 @@
-.head-container{
-display: flex;
-width: 100%;
-justify-content: space-between;
+.head-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80% 5% 15%;
+    align-items: center;
+    justify-content: center;
+    height: 12vh;
+    background-color: white;
+    padding: 0px 20px;
 }
 
-.profile-name{
-
+.profile-name {
+    color: #006770;
+    font-family: 'mooli';
+    font-weight: 900;
 }
 
-.notification-icon{
-
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.profile-img{
+.profile-email {
+    display: block;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
 
+.profile-text {
+    width: 100px;
+    font-family: 'mooli';
+}
+
+.notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

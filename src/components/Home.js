@@ -9,9 +9,9 @@ function Home() {
                 <div className="NavBar">
                     <Nav />
                 </div>
-                <div>
+                <div className='dash-container'>
                     <div>
-                        <Head/>
+                        <Head />
                     </div>
                 </div>
             </div>
