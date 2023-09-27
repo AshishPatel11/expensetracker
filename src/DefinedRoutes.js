@@ -10,12 +10,12 @@ import Signup from './components/Signup'
 import OtpAuth from './components/OtpAuth'
 import Forgotpass from './components/Forgotpass';
 import OtpVerify from './components/OtpVerify';
-import Nav from './components/Nav';
 import Home from './components/Home';
 
 
+
 //this component contain all the routes of the website
-const DefinedRoutes = () => {
+function DefinedRoutes() {
     return (
         <>
             <Routes>
@@ -24,12 +24,11 @@ const DefinedRoutes = () => {
                 <Route path='/OtpAuth' element={<OtpAuth />} />
                 <Route path='/Forgotpass' element={<Forgotpass />} />
                 <Route path='/OtpVerify' element={<OtpVerify />} />
-                <Route path='/Nav' element={<Nav />} />
                 <Route path='/Home' element={<Home />} />
-            </Routes>
+           </Routes>
 
         </>
-    )
+    );
 }
 
 export default DefinedRoutes
