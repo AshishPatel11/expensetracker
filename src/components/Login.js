@@ -25,6 +25,8 @@ function Login() {
         });
 
         const apiObj = await response.json()
+
+        
         //if API responses error
         if (apiObj.error) {
             setLoading(false)
@@ -32,7 +34,9 @@ function Login() {
         }
         //if API responses successfully
         else if (apiObj.userName) {
+
             localStorage.setItem("user", JSON.stringify(apiObj))
+
             setLoading(false)
             alert("Login Successfull !!")
             navigate("/Home");
@@ -50,6 +54,7 @@ function Login() {
     const onChange = (event) => {
         setUserData({ ...UserData, [event.target.name]: event.target.value })
     }
+    
     return (
         <div className='form-container'>
             <div className='bg-white'>

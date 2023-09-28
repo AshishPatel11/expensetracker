@@ -1,0 +1,53 @@
+.card-container {
+    height: 20vh;
+    color: #f0f0f0;
+    border-radius: 8px;
+    margin: 24px 24px;
+    padding: 18px;
+    background-color: #006770;
+    font-family: 'mooli';
+}
+
+.Dash-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.card-data {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-btn {
+    background-color: #006770;
+    color: #f0f0f0;
+    border: 3px solid #f0f0f0;
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'mooli';
+    border-radius: 4px;
+    cursor: pointer;
+    width: 170px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: .2s ease;
+}
+
+.btn-container {
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.card-btn:active {
+    background-color: #f0f0f0;
+    color: #006770;
+}
+
+.card-btn:active * {
+    stroke: #006770;
+}

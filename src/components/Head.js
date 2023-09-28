@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './CSS/Head.css';
 import { Bell } from 'lucide-react'
 import profile from './assets/profile.png'
+
 const Head = () => {
     const [UserData, setUserData] = useState({})
 
@@ -9,8 +10,9 @@ const Head = () => {
         let UserSession = JSON.parse(localStorage.getItem("user"));
         if (UserSession) {
             setUserData(UserSession)
+
         }
-    }, [])
+    },[])
 
     return (
         <header>
