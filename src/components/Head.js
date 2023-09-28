@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CSS/Head.css';
 import { Bell } from 'lucide-react'
 import profile from './assets/profile.png'
 const Head = () => {
-    let UserSession = JSON.parse(localStorage.getItem("user"));
-    const [UserData, setUserData] = useState(UserSession)
+    const [UserData, setUserData] = useState({})
+
+    useEffect(() => {
+        let UserSession = JSON.parse(localStorage.getItem("user"));
+        if (UserSession) {
+            setUserData(UserSession)
+        }
+    }, [])
+
     return (
         <header>
             <div className="head-container">

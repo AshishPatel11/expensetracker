@@ -6,7 +6,8 @@
 
 .logo-title {
   color: #f0f0f0;
-  font-family: 'Croissant One'
+  font-family: 'Croissant One';
+  cursor: pointer;
 }
 
 .super-image {

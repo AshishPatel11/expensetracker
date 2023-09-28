@@ -1,7 +1,6 @@
 import React from 'react'
 import './CSS/Nav.css';
 import { LayoutDashboard, Repeat, Wallet, Settings, FileBarChart, LogOut } from 'lucide-react'
-import logo from './assets/logo-svg.svg'
 import scrimg from './assets/images-removebg-preview.png'
 import { Link } from 'react-router-dom'
 const Nav = () => {

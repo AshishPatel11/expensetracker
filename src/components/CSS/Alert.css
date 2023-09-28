@@ -1,0 +1,43 @@
+.alert-screen {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.alert-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20vh;
+    width: 20vw;
+    background-color: #006770;
+    color: #f0f0f0;
+    font-family: 'Exo';
+    border-radius: 12px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.573);
+}
+.alert-btn{
+    width: 82px;
+    height: 32px;
+    border-radius: 6px;
+    border: none;
+    background-color: #006770;
+    border: 2px solid #f0f0f0;
+    color: #f0f0f0;
+    cursor: pointer;
+    padding: 4px 10px;
+    transition: .2s ease;
+    font-family: 'mooli';
+    font-weight: 500;
+}
+.alert-btn:active{
+    background-color: #f0f0f0;
+    border: 2px solid #006770;
+    color: #006770;
+}
