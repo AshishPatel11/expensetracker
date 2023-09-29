@@ -1,4 +1,5 @@
-.Exp-form-container {
+.Exp-form-container,
+.reminder-form-container {
     background-color: white;
     position: fixed;
     top: 50%;
