@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 //Defining the API endpoint path fron all routes
 app.use('/api', require('./routes/user'));
 app.use('/api', require('./routes/expenses'));
+app.use('/api', require('./routes/reminder'));
 
 //starting the server on the port with use of Express
 app.listen(port, () => {
