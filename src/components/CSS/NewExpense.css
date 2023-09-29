@@ -27,3 +27,43 @@
     font-family: 'Exo';
     font-weight: bold;
 }
+
+.lable-tag{
+    font-size: 15px;
+    font-family: Mooli;
+    font-weight: 700;
+    margin-left: 20px; 
+    display: flex;
+}
+
+.input-tag{
+    margin: 10px 0px 10px 30px;
+    border: none;
+    outline: none;
+    background-color: #f2f4f7;
+    padding: 10px 10px;
+    border-radius: 12px;
+    font-family: 'mooli';
+    width: 60%;
+}
+
+.title{
+    font-size: 15px;
+    font-family: 'Exo';
+    font-weight: 600;
+    margin: 20px; 
+}
+
+.expense-submit-btn{
+    margin-left: 150px;
+    margin-top: 20px;
+    background: #006770;
+    height: 42px;
+    width: 100px;
+    border-radius: 8px;
+    font-family: 'exo';
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid rgba(0, 0, 0, 0.500);
+    color: #e6fff7;
+}
