@@ -1,5 +1,6 @@
 import React from 'react'
 import '../CSS/NewExpense.css'
+import DragDropFiles from './DragDropFile'
 
 const NewExpense = () => {
     return (
@@ -29,6 +30,9 @@ const NewExpense = () => {
                     </div>
                     <div className="expense-submit">
                          <button type="submit" className="expense-submit-btn">Submit</button>
+                    </div>
+                    <div>
+                        <DragDropFiles/>
                     </div>
                 </form>
             </div>
