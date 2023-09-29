@@ -29,15 +29,15 @@
     font-weight: bold;
 }
 
-.lable-tag{
+.lable-tag {
     font-size: 15px;
     font-family: Mooli;
     font-weight: 700;
-    margin-left: 20px; 
+    margin-left: 20px;
     display: flex;
 }
 
-.input-tag{
+.input-tag {
     margin: 10px 0px 10px 30px;
     border: none;
     outline: none;
@@ -48,14 +48,14 @@
     width: 60%;
 }
 
-.title{
+.title {
     font-size: 15px;
     font-family: 'Exo';
     font-weight: 600;
-    margin: 20px; 
+    margin: 20px;
 }
 
-.expense-submit-btn{
+.expense-submit-btn {
     margin-left: 150px;
     margin-top: 20px;
     background: #006770;
@@ -67,4 +67,67 @@
     font-weight: 500;
     border: 1px solid rgba(0, 0, 0, 0.500);
     color: #e6fff7;
+}
+
+.seprator {
+    display: grid;
+    grid-template-columns: 2.5fr 2fr;
+}
+
+/* FILE UPLOAD */
+
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    border: 2px solid #666666;
+    border-radius: 4px;
+    padding: 2rem;
+    font-family: 'mooli';
+    text-align: center;
+    margin: 0px 32px;
+}
+
+.active {
+    background-color: #5f5959;
+}
+
+.file-btn {
+    padding: 1rem;
+    margin: 1rem;
+    font-size: medium;
+    font-family: 'mooli';
+}
+
+
+.list-item {
+    display: flex;
+    padding: 0;
+    margin: 8px 0;
+    min-width: 300px;
+    font-size: 22px;
+    background-color: #d4d2d2;
+    cursor: grab;
+    border-radius: 10px;
+}
+
+.list-item>h3 {
+    padding: 10px;
+    margin: 0;
+}
+
+.list-item>span {
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border-right: 2px solid white;
+    padding: 10px;
+    padding-right: 16px;
+}
+
+.next-position {
+    border: 2px solid #34d44f;
+    opacity: 0.2;
 }
