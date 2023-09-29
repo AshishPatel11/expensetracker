@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 
 //created model(Schema) for the User collection in database
-const ExpensesSchema = new Schema({
+const ReminderSchema = new Schema({
     //fields to be added in collection
     ExpenseId: {
         type: Number,
@@ -22,15 +22,11 @@ const ExpensesSchema = new Schema({
         type: String,
         required: true
     },
-    ExpenseDate:{
+    ReminderDate:{
         type: Date,
-        required: true
-    },
-    ExpenseDescription: {
-        type: String,
         required: true
     }
 });
 
 //exporting the model module
-module.exports = mongoose.model('expenses', ExpensesSchema)
+module.exports = mongoose.model('reminder', ReminderSchema)

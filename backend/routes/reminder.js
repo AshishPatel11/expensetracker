@@ -1,19 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Expenses = require('../models/expenses')
+const Reminder = require('../models/reminder')
 
-router.post('/expenses', async (req, res) => {
+router.post('/reminder', async (req, res) => {
     try {
-        let newExpense = await Expenses.create({
+        let Reminder = await Reminder.create({
             ExpenseId: req.body.ExpenseId,
             ExpenseName: req.body.ExpenseName,
             ExpenseAmount: req.body.ExpenseAmount,
             Category: req.body.Category,
-            ExpenseDate: req.body.ExpenseDate,
-            ExpenseDescription: req.body.ExpenseDescription,
+            ReminderDate: req.body.ReminderDate,
         });
-        if(newExpense){
-            res.json(newExpense)
+        if(Reminder){
+            res.json(Reminder)
         }
         else{
             res.json({error:"Something went wrong!!"})
