@@ -8,7 +8,9 @@ const Alert = (props) => {
                     <p className='alert-msg'>
                         {props.message}
                     </p>
-                    <button className='alert-btn' onClick={props.func}>OK</button>
+                    <form onSubmit={props.func}>
+                        <button type='submit' className='alert-btn'>OK</button>
+                    </form>
                 </div>
             </div>
         </>

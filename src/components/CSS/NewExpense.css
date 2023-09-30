@@ -67,6 +67,7 @@
     font-weight: 500;
     border: 1px solid rgba(0, 0, 0, 0.500);
     color: #e6fff7;
+    cursor: pointer;
 }
 
 .seprator {
@@ -88,6 +89,11 @@
     font-family: 'mooli';
     text-align: center;
     margin: 0px 32px;
+}
+
+.upload-img {
+    height: 90%;
+    width: 90%;
 }
 
 .active {

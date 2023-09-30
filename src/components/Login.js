@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lottie from "lottie-react";
 import animationSvg from './assets/form_animation.json'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +9,14 @@ function Login() {
     const [UserData, setUserData] = useState({});
     const [Loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
+    console.log(UserData)
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            navigate('/Home')
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     //form submit event handlling function
     const handleSubmit = async event => {
         event.preventDefault();
@@ -26,7 +33,7 @@ function Login() {
 
         const apiObj = await response.json()
 
-        
+
         //if API responses error
         if (apiObj.error) {
             setLoading(false)
@@ -54,7 +61,7 @@ function Login() {
     const onChange = (event) => {
         setUserData({ ...UserData, [event.target.name]: event.target.value })
     }
-    
+
     return (
         <div className='form-container'>
             <div className='bg-white'>
