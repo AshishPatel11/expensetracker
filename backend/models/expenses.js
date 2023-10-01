@@ -18,17 +18,20 @@ const ExpensesSchema = new Schema({
         type: Number,
         required: true
     },
-    Category:{
+    Category: {
         type: String,
         required: true
     },
-    ExpenseDate:{
+    ExpenseDate: {
         type: Date,
         required: true
     },
     ExpenseDescription: {
         type: String,
         required: true
+    },
+    Bill: {
+        type: String,
     }
 });
 

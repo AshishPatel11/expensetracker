@@ -16,6 +16,7 @@ router.post('/expenses', async (req, res) => {
             Category: req.body.Category,
             ExpenseDate: req.body.ExpenseDate,
             ExpenseDescription: req.body.ExpenseDescription,
+            Bill: req.body.Bill
         });
 
         if (newExpense) {

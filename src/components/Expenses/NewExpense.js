@@ -1,15 +1,14 @@
-import React, { useId, useState } from 'react'
+import React, { useState } from 'react'
 import '../CSS/NewExpense.css'
 import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
 import DragDropFiles from './DragDropFile'
 
 const NewExpense = () => {
-
+    //Hooks defination
     const [ExpenseData, setExpenseData] = useState();
     const [Loading, setLoading] = useState(false);
-
-
+    const [Image, setImage] = useState("")
 
     //Genrating the Option tag for the category of option with map
     const Category = ["Entertaintment", "Groceries", "Education", "Personal Care", "Health", "Fitness", "Kids", "Food & Dining", "Bills & Utilities", "Auto & Transport", "Taxes", "Investment", "Trips", "Petcare", "Clothing", "Beauty", "HouseHold", "Air tickets", "Vehicle", "Hotel", "Petrol & Gas", "Loans & EMI", "Rents", "Miscellaneous"];
@@ -17,21 +16,20 @@ const NewExpense = () => {
     const CategoryList = Category.map((item, index) => {
         return <option key={index} value={item}> {item} </option>
     })
-
+    //getting the base64 data of the image from child component
+    const getImageBase = (imageBase) => {
+        setImage(imageBase);
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const formData = new FormData();
-        formData.append('file', event.target.files);
-
-        console.log(formData)
         const response = await fetch("http://localhost:5000/api/expenses", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(ExpenseData)
+            body: JSON.stringify({ ...ExpenseData, Bill: Image })
         })
 
         let apiObj = await response.json();
@@ -52,7 +50,7 @@ const NewExpense = () => {
 
     return (
         <>
-            <div className='exp-form'>
+            <div className='exp-form' encType="multipart/form-data">
                 <form onSubmit={handleSubmit}>
                     <div className="title"><p>Fill in the appropriate details to log you expenses.</p></div>
                     <div className='seprator'>
@@ -83,7 +81,7 @@ const NewExpense = () => {
                             </div>
                         </div>
                         <div>
-                            <DragDropFiles />
+                            <DragDropFiles getImageBase={getImageBase} />
                         </div>
                     </div>
 

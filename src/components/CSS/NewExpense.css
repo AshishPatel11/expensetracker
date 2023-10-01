@@ -45,7 +45,7 @@
     padding: 10px 10px;
     border-radius: 12px;
     font-family: 'mooli';
-    width: 60%;
+    width: 80%;
 }
 
 .title {
@@ -68,6 +68,10 @@
     border: 1px solid rgba(0, 0, 0, 0.500);
     color: #e6fff7;
     cursor: pointer;
+}
+
+.fileupload {
+    margin-left: 0px;
 }
 
 .seprator {

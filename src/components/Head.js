@@ -12,7 +12,7 @@ const Head = () => {
             setUserData(UserSession)
 
         }
-    },[])
+    }, [])
 
     return (
         <header>
