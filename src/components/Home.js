@@ -6,6 +6,7 @@ import LoginAuth from './LoginAuth';
 import Card from './Card';
 import NewExpense from './Expenses/NewExpense';
 import NewReminder from './Expenses/NewReminder';
+import BarChart from './Charts/BarChart';
 
 function Home() {
     const [Expenseform, setExpenseform] = useState(false);
@@ -54,6 +55,7 @@ function Home() {
                             <NewReminder />
                         </div>
                     }
+                    <BarChart />
                 </div>
             </div >
         </>
