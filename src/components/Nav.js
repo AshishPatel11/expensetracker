@@ -33,7 +33,7 @@ const Nav = () => {
 
                             <li className='link-list'>
                                 <div>
-                                    <Link to='/home'>
+                                    <Link to='/ExpenseHistory'>
                                         <div className='link-grid'>
                                             <span>
                                                 <Repeat color="#f0f0f0" />
