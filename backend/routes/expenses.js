@@ -37,9 +37,13 @@ router.post('/expenses', async (req, res) => {
 //fetching data for the Bar chart
 router.post('/BarChart', async (req, res) => {
     try {
-
         //Query for the data of monthly Expenses
         const aggregate = await Expenses.aggregate([
+            {
+                $match: {
+                    uid: req.body.uid
+                }
+            },
             {
                 $project: {
                     yearMonth: { $dateToString: { format: "%Y-%m", date: "$ExpenseDate" } },
@@ -53,7 +57,10 @@ router.post('/BarChart', async (req, res) => {
                 }
             },
             {
-                $sort: { _id: 1 } // Sort by year and month
+                $sort: {
+                    "_id.year": 1,
+                    "_id.month": 1
+                }
             }
         ]);
         if (!aggregate[0]) {
@@ -62,6 +69,68 @@ router.post('/BarChart', async (req, res) => {
         else if (aggregate) {
             res.json(aggregate);
         }
+    } catch (error) {
+        res.status(500).send(error.message);
+        console.log(error.message)
+    }
+})
+
+
+
+//fetching data for the pie chart
+router.post('/PieChart', async (req, res) => {
+    try {
+        //Query for the data of monthly Expenses
+        const totalResult = await Expenses.aggregate([
+            {
+                $match: {
+                    uid: req.body.uid
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalExpense: { $sum: '$ExpenseAmount' }
+                }
+            }
+        ]).exec();
+
+        if (!totalResult[0]) {
+            res.json({ error: "no data available" })
+        }
+        else {
+            const totalExpense = totalResult[0].totalExpense;
+
+            // Calculate category-wise percentages
+            const result = await Expenses.aggregate([
+                {
+                    $match: {
+                        uid: req.body.uid
+                    }
+                },
+                {
+                    $group: {
+                        _id: '$Category',
+                        totalExpense: { $sum: '$ExpenseAmount' }
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        Category: '$_id',
+                        totalExpense: 1,
+                        percentage: {
+                            $multiply: [
+                                { $divide: ['$totalExpense', totalExpense] },
+                                100
+                            ]
+                        }
+                    }
+                }
+            ]).exec();
+            res.json(result);
+        }
+
     } catch (error) {
         res.status(500).send(error.message);
         console.log(error.message)
