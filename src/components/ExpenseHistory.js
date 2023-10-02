@@ -16,9 +16,9 @@ function ExpenseHistory() {
         </div>
         <div className='dash-container'>
           <div>
-            <Head />
-            <h3 className='history-tagname history-container'> Expense History</h3>
+            <Head message="Expense" />
           </div>
+          <h3 className='history-tagname history-container'> Expense History</h3>
         </div>
       </div >
     </>

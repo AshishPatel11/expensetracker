@@ -3,7 +3,7 @@ import './CSS/Head.css';
 import { Bell } from 'lucide-react'
 import profile from './assets/profile.png'
 
-const Head = () => {
+const Head = (props) => {
     const [UserData, setUserData] = useState({})
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const Head = () => {
     return (
         <header>
             <div className="head-container">
-                <h1 className='profile-name'>Hello, {UserData.firstName} {UserData.lastName}</h1>
+                <h1 className='profile-name'>{props.message ? props.message : "Hello," + UserData.firstName + " " + UserData.lastName}</h1>
                 <div className='notification-icon'>
                     <Bell size={40} strokeWidth={1} />
                 </div>

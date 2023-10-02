@@ -57,7 +57,7 @@ router.post('/BarChart', async (req, res) => {
             }
         ]);
         if (!aggregate[0]) {
-            res.json([{ error: "No Data Found" }])
+            res.json({ error: "No Data Found" })
         }
         else if (aggregate) {
             res.json(aggregate);
