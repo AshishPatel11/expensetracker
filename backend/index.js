@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 app.use('/api', require('./routes/user'));
 app.use('/api', require('./routes/expenses'));
 app.use('/api', require('./routes/reminder'));
-app.use('/api', require('./routes/ExpHistory'));
+app.use('/api', require('./routes/table'));
 
 
 //starting the server on the port with use of Express

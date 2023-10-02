@@ -1,9 +1,48 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart as PieChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 export default function PieChart() {
+    const [ChartData, setChartData] = useState([])
+    const [LabelData, setLabelData] = useState([])
+    const [Dataset, setDataSet] = useState([])
+
+    useEffect(() => {
+        if (ChartData) {
+
+            const label = ChartData.map((item, index) => {
+                return item.Category
+            })
+            const data = ChartData.map((item, index) => {
+                return item.percentage.toFixed(2);
+            })
+            setDataSet(data)
+            setLabelData(label)
+        }
+    }, [ChartData])
+
+    useEffect(() => {
+        const fetchAPI = async () => {
+            const response = await fetch("http://localhost:5000/api/PieChart", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(JSON.parse(localStorage.getItem("user")))
+            });
+            let apiObj = await response.json();
+            if (apiObj.error) {
+                setChartData(null)
+            }
+            else if (apiObj[0]) {
+                setChartData(apiObj)
+            }
+        }
+        fetchAPI();
+    }, [])
+
+
     PieChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
     PieChartJS.defaults.set('plugins.datalabels', {
         color: '#f0f0f0',
@@ -31,19 +70,22 @@ export default function PieChart() {
                 anchor: 'center',
                 align: 'center',
                 font: {
-                    weight: 'bold',
-                    size: '18',
+                    weight: 'normal',
+                    size: '14',
                     family: 'mooli'
-                }
+                },
+                formatter: function (value, ctx) {
+                    return (value) + '%';
+                },
             }
         },
     };
     const data = {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: LabelData,
         datasets: [
             {
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                label: '%',
+                data: Dataset,
                 backgroundColor: [
                     'rgba(255, 99, 132)',
                     'rgba(54, 162, 235)',
