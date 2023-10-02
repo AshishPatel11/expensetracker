@@ -24,6 +24,7 @@ function ExpenseHistory() {
             <h3 className='history-tagname history-container'> Expense History</h3>
             </div>
           </div>
+          <h3 className='history-tagname history-container'> Expense History</h3>
         </div>
       </div >
     </>

@@ -27,14 +27,17 @@ export default function BarChart() {
 
 
     useEffect(() => {
-        const label = ChartData.map((item, index) => {
-            return item._id
-        })
-        const data = ChartData.map((item, index) => {
-            return item.totalExpense
-        })
-        setDataSet(data)
-        setLabelData(label)
+        if (ChartData) {
+
+            const label = ChartData.map((item, index) => {
+                return item._id
+            })
+            const data = ChartData.map((item, index) => {
+                return item.totalExpense
+            })
+            setDataSet(data)
+            setLabelData(label)
+        }
     }, [ChartData])
 
     useEffect(() => {
@@ -47,9 +50,8 @@ export default function BarChart() {
                 body: JSON.stringify()
             });
             let apiObj = await response.json();
-            console.log(apiObj)
             if (apiObj.error) {
-                setChartData({ message: "No Data Available!!" })
+                setChartData(null)
             }
             else if (apiObj[0]) {
                 setChartData(apiObj)
@@ -99,15 +101,16 @@ export default function BarChart() {
             },
         ],
     };
-    // if (ChartData[0].message) {
-    //     return (
-    //         <>
-    //             <div className='Bat-chart'>
-    //                 {/* <h1>{ChartData[0].message}</h1> */}
-    //             </div>
-    //         </>
-    //     )
-    // }
+    console.log(ChartData)
+    if (!ChartData) {
+        return (
+            <>
+                <div className='Bar-chart'>
+                    <h1>No Data Available</h1>
+                </div>
+            </>
+        )
+    }
     return (
 
         <>
