@@ -17,7 +17,12 @@ function ExpenseHistory() {
         <div className='dash-container'>
           <div>
             <Head />
+            <div className='filter-container'>
+               <input className='search-box' type="text" placeholder="Search..."/>
+              <button className='search-button'>Search</button>
+              <select className='select'><option hidden>Search by filter</option></select>
             <h3 className='history-tagname history-container'> Expense History</h3>
+            </div>
           </div>
         </div>
       </div >
