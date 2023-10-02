@@ -3,15 +3,23 @@ import '../CSS/NewExpense.css'
 import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
 import DragDropFiles from './DragDropFile'
-import { useNavigate } from 'react-router-dom'
 
 const NewExpense = () => {
     //Hooks defination
-    const [ExpenseData, setExpenseData] = useState();
+    const initialExp = {
+        Category: "",
+        ExpenseAmount: "",
+        ExpenseDate: "",
+        ExpenseDescription: "",
+        ExpenseName: "",
+    }
+    const [ExpenseData, setExpenseData] = useState(initialExp);
     const [Loading, setLoading] = useState(false);
     const [Image, setImage] = useState("")
     const [UserData, setUserData] = useState({})
-    const navigate = useNavigate()
+    const [imagereset, setImagereset] = useState("initial")
+
+    console.log(ExpenseData)
     useEffect(() => {
         let UserSession = JSON.parse(localStorage.getItem("user"));
         if (UserSession) {
@@ -51,6 +59,8 @@ const NewExpense = () => {
         else {
             alert(apiObj.error.message)
         }
+        setExpenseData(initialExp)
+        setImagereset("reset")
     }
 
     const onChange = event => {
@@ -66,31 +76,30 @@ const NewExpense = () => {
                         <div>
                             <div className="">
                                 <label className="lable-tag" htmlFor="ExpenseName">Expense Name </label>
-                                <input className="input-tag" onChange={onChange} name="ExpenseName" required type="text" id="ExpenseName" placeholder="Expense Name" />
+                                <input className="input-tag" value={ExpenseData.ExpenseName} onChange={onChange} name="ExpenseName" required type="text" id="ExpenseName" placeholder="Expense Name" />
                             </div>
                             <div className="">
                                 <label className="lable-tag" htmlFor="ExpenseAmount"> Expense Amount </label>
-                                <input className="input-tag" onChange={onChange} name="ExpenseAmount" required type="number" id="ExpenseAmount" placeholder="Expense Amount" />
+                                <input className="input-tag" value={ExpenseData.ExpenseAmount} onChange={onChange} name="ExpenseAmount" required type="number" id="ExpenseAmount" placeholder="Expense Amount" />
                             </div>
                             <div className="">
                                 <label className="lable-tag" htmlFor="Category">Category </label>
-
-                                <select className="input-tag" onChange={onChange} name="Category" required id="Category" placeholder="Category" >
+                                <select className="input-tag" onChange={onChange} value={ExpenseData.Category} name="Category" required id="Category" placeholder="Category" >
                                     <option hidden>Select Category</option>
                                     {CategoryList}
                                 </select>
                             </div>
                             <div className="">
                                 <label className="lable-tag" htmlFor="ExpenseDate">Expense Date </label>
-                                <input className="input-tag" onChange={onChange} name="ExpenseDate" required type="Date" id="ExpenseDate" placeholder="Expense Date" />
+                                <input className="input-tag" value={ExpenseData.ExpenseDate} onChange={onChange} name="ExpenseDate" required type="Date" id="ExpenseDate" placeholder="Expense Date" />
                             </div>
                             <div className="">
                                 <label className="lable-tag" htmlFor="ExpenseDescription">Expense Description</label>
-                                <input className="input-tag" onChange={onChange} name="ExpenseDescription" required type="text" id="ExpenseDescription" placeholder="Expense Description" />
+                                <input className="input-tag" onChange={onChange} value={ExpenseData.ExpenseDescription} name="ExpenseDescription" required type="text" id="ExpenseDescription" placeholder="Expense Description" />
                             </div>
                         </div>
                         <div>
-                            <DragDropFiles getImageBase={getImageBase} />
+                            <DragDropFiles val={imagereset} getImageBase={getImageBase} />
                         </div>
                     </div>
 

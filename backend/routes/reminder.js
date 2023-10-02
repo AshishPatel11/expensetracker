@@ -14,6 +14,7 @@ router.post('/reminder', async (req, res) => {
             ExpenseAmount: req.body.ExpenseAmount,
             Category: req.body.Category,
             ReminderDate: req.body.ReminderDate,
+            uid: req.body.uid,
         });
         if (reminder) {
             res.json(reminder)

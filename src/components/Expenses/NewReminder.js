@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../CSS/NewExpense.css'
 import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
 
 const NewReminder = () => {
     //Hooks defination
-    const [ReminderData, setReminderData] = useState();
+    const intialRem = {
+        Category: "",
+        ExpenseAmount: "",
+        ReminderDate: "",
+        ExpenseName: "",
+    }
+    const [ReminderData, setReminderData] = useState(intialRem);
+    const [UserData, setUserData] = useState({})
     const [Loading, setLoading] = useState(false);
     //Genrating the Option tag for the category of option with map
     const Category = ["Entertaintment", "Groceries", "Education", "Personal Care", "Health", "Fitness", "Kids", "Food & Dining", "Bills & Utilities", "Auto & Transport", "Taxes", "Investment", "Trips", "Petcare", "Clothing", "Beauty", "HouseHold", "Air tickets", "Vehicle", "Hotel", "Petrol & Gas", "Loans & EMI", "Rents", "Miscellaneous"];
@@ -14,6 +21,12 @@ const NewReminder = () => {
         return <option key={index} value={item}> {item} </option>
     })
 
+    useEffect(() => {
+        let UserSession = JSON.parse(localStorage.getItem("user"));
+        if (UserSession) {
+            setUserData(UserSession)
+        }
+    }, [])
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -22,7 +35,7 @@ const NewReminder = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(ReminderData)
+            body: JSON.stringify({ ...ReminderData, uid: UserData.uid })
         })
 
         let apiObj = await response.json();
@@ -35,6 +48,7 @@ const NewReminder = () => {
         else {
             alert(apiObj.error.message)
         }
+        setReminderData(intialRem)
     }
 
     const onChange = event => {
@@ -50,23 +64,23 @@ const NewReminder = () => {
                     <div>
                         <div className="">
                             <label className="lable-tag" htmlFor="ExpenseName">Expense Name </label>
-                            <input className="input-tag" onChange={onChange} name="ExpenseName" required type="text" id="ExpenseName" placeholder="Expense Name" />
+                            <input className="input-tag" value={ReminderData.ExpenseName} onChange={onChange} name="ExpenseName" required type="text" id="ExpenseName" placeholder="Expense Name" />
                         </div>
                         <div className="">
                             <label className="lable-tag" htmlFor="ExpenseAmount"> Expense Amount </label>
-                            <input className="input-tag" onChange={onChange} name="ExpenseAmount" required type="number" id="ExpenseAmount" placeholder="Expense Amount" />
+                            <input className="input-tag" value={ReminderData.ExpenseAmount} onChange={onChange} name="ExpenseAmount" required type="number" id="ExpenseAmount" placeholder="Expense Amount" />
                         </div>
                         <div className="">
                             <label className="lable-tag" htmlFor="Category">Category </label>
 
-                            <select className="input-tag" onChange={onChange} name="Category" required id="Category" placeholder="Category" >
+                            <select className="input-tag" onChange={onChange} value={ReminderData.Category} name="Category" required id="Category" placeholder="Category" >
                                 <option hidden>Select Category</option>
                                 {CategoryList}
                             </select>
                         </div>
                         <div className="">
                             <label className="lable-tag" htmlFor="ReminderDate">Reminder Date </label>
-                            <input className="input-tag" onChange={onChange} name="ReminderDate" required type="Date" id="ReminderDate" placeholder="Reminder Date" />
+                            <input className="input-tag" value={ReminderData.ReminderDate} onChange={onChange} name="ReminderDate" required type="Date" id="ReminderDate" placeholder="Reminder Date" />
                         </div>
                     </div>
 

@@ -1,11 +1,15 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const DragDropFiles = (props) => {
 
   const [files, setFiles] = useState(null);
   const [imagedata, setImagedata] = useState({})
-  const [imageBase, setImageBase] = useState("");
-
+  useEffect(() => {
+    if (props.val === "reset") {
+      setFiles(null)
+      setImagedata({})
+    }
+  }, [props.val])
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
