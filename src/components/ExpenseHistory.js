@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import Nav from './Nav';
 import Head from './Head';
-import { BellPlus, PlusCircle, X } from 'lucide-react'
+import './CSS/ExpenseHistory.css'
 import LoginAuth from './LoginAuth';
-import Card from './Card';
-import NewExpense from './Expenses/NewExpense';
-import NewReminder from './Expenses/NewReminder';
-import BarChart from './Charts/BarChart';
-import PieChart from './Charts/PieChart';
 
 function ExpenseHistory() {
 
@@ -22,6 +17,7 @@ function ExpenseHistory() {
         <div className='dash-container'>
           <div>
             <Head />
+            <h3 className='history-tagname history-container'> Expense History</h3>
           </div>
         </div>
       </div >

@@ -1,0 +1,16 @@
+.history-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 80% 5% 15%;
+    align-items: center;
+    justify-content: center;
+    height: 4vh;
+    background-color: rgb(255, 255, 255);
+    padding: 0px 20px;
+}
+
+.history-tagname {
+    color: #006770;
+    font-family: 'Exo';
+    font-weight: 800;
+}
