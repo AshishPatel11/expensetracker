@@ -14,7 +14,7 @@ const ExpenseTable = () => {
             });
             const apiObj = await response.json()
             if (apiObj.error) {
-                setExpenseData(null);
+                setExpenseData([]);
             }
             else {
                 setExpenseData(apiObj);
