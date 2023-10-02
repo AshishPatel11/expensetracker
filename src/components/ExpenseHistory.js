@@ -36,8 +36,7 @@ function ExpenseHistory() {
               <button className='search-button'>Search</button>
               <select className='select' onChange={onChange} ><option hidden>Search by filter</option>{CategoryList}</select>
             </div>
-            <div>
-              <h3 className='history-tagname history-container'> Expense History</h3>
+            <div className='history-container'>
               <ExpenseTable />
             </div>
           </div>

@@ -1,0 +1,66 @@
+.Expense-tbl {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-family: 'mooli';
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.tbl-head .tbl-row {
+    background-color: #e6fff7;
+    color: black;
+    text-align: left;
+}
+
+.tbl-hcolumn,
+.tbl-data {
+    padding: 12px 15px;
+}
+
+.tbl-body .tbl-row {
+    border-bottom: 1px solid #dddddd;
+}
+
+.tbl-body .tbl-row:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tbl-body .tbl-row:last-of-type {
+    border-bottom: 2px solid #e6fff7;
+}
+
+/* .Expense-tbl {
+    border: 2px solid #868686;
+    border-radius: 8px;
+    border-spacing: 0;
+    height: 100%;
+    width: 100%;
+    border-collapse: separate;
+    color: black;
+    font-family: 'mooli';
+    overflow: hidden;
+    margin: 12px 0px;
+}
+
+
+.tbl-head {
+    background-color: #e6fff7;
+}
+
+.tbl-hcolumn {
+    text-align: left;
+    padding: 12px 8px;
+}
+
+.tbl-data {
+    text-align: left;
+    padding: 4px 8px;
+}
+
+.tbl-row :not(:last-child) {
+    border-bottom: 2px solid black;
+} */
