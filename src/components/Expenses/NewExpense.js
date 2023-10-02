@@ -3,6 +3,7 @@ import '../CSS/NewExpense.css'
 import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
 import DragDropFiles from './DragDropFile'
+import { useNavigate } from 'react-router-dom'
 
 const NewExpense = () => {
     //Hooks defination
@@ -10,7 +11,7 @@ const NewExpense = () => {
     const [Loading, setLoading] = useState(false);
     const [Image, setImage] = useState("")
     const [UserData, setUserData] = useState({})
-
+    const navigate = useNavigate()
     useEffect(() => {
         let UserSession = JSON.parse(localStorage.getItem("user"));
         if (UserSession) {

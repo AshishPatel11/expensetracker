@@ -47,7 +47,7 @@ export default function BarChart() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify()
+                body: JSON.stringify(JSON.parse(localStorage.getItem("user")))
             });
             let apiObj = await response.json();
             if (apiObj.error) {
@@ -101,7 +101,6 @@ export default function BarChart() {
             },
         ],
     };
-    console.log(ChartData)
     if (!ChartData) {
         return (
             <>
@@ -120,29 +119,3 @@ export default function BarChart() {
         </>
     )
 }
-
-
-
-
-// db.expenses.aggregate([
-//     {
-//         $match: {
-//             // Add any specific filters here if needed
-//         }
-//     },
-//     {
-//         $project: {
-//             yearMonth: { $dateToString: { format: "%Y-%m", date: "$ExpenseDate" } },
-//             ExpenseAmount: 1
-//         }
-//     },
-//     {
-//         $group: {
-//             _id: "$yearMonth",
-//             totalExpense: { $sum: "$ExpenseAmount" }
-//         }
-//     },
-//     {
-//         $sort: { _id: 1 } // Sort by year and month
-//     }
-// ])

@@ -34,7 +34,7 @@ const ExpensesSchema = new Schema({
         type: String,
     },
     uid: {
-        type: String,
+        type: Number,
         required: true
     }
 });
