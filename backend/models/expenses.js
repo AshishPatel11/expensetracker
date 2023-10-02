@@ -32,6 +32,10 @@ const ExpensesSchema = new Schema({
     },
     Bill: {
         type: String,
+    },
+    uid: {
+        type: String,
+        required: true
     }
 });
 

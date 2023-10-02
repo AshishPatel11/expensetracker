@@ -26,6 +26,7 @@ function DefinedRoutes() {
                 <Route path='/OtpVerify' element={<OtpVerify />} />
                 <Route path='/Home' element={<Home />} />
                 <Route path='/Logout' element={<Logout />} />
+
             </Routes>
 
         </>

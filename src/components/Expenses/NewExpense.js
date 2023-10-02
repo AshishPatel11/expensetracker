@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../CSS/NewExpense.css'
 import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
@@ -9,6 +9,14 @@ const NewExpense = () => {
     const [ExpenseData, setExpenseData] = useState();
     const [Loading, setLoading] = useState(false);
     const [Image, setImage] = useState("")
+    const [UserData, setUserData] = useState({})
+
+    useEffect(() => {
+        let UserSession = JSON.parse(localStorage.getItem("user"));
+        if (UserSession) {
+            setUserData(UserSession)
+        }
+    }, [])
 
     //Genrating the Option tag for the category of option with map
     const Category = ["Entertaintment", "Groceries", "Education", "Personal Care", "Health", "Fitness", "Kids", "Food & Dining", "Bills & Utilities", "Auto & Transport", "Taxes", "Investment", "Trips", "Petcare", "Clothing", "Beauty", "HouseHold", "Air tickets", "Vehicle", "Hotel", "Petrol & Gas", "Loans & EMI", "Rents", "Miscellaneous"];
@@ -29,7 +37,7 @@ const NewExpense = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ ...ExpenseData, Bill: Image })
+            body: JSON.stringify({ ...ExpenseData, Bill: Image, uid: UserData.uid })
         })
 
         let apiObj = await response.json();

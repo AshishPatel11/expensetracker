@@ -1,11 +1,43 @@
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-
+import { Chart as PieChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels'
 
 export default function PieChart() {
-    ChartJS.register(ArcElement, Tooltip, Legend);
+    PieChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
+    PieChartJS.defaults.set('plugins.datalabels', {
+        color: '#f0f0f0',
+        anchor: 'end',
+        align: 'start'
+    });
 
+    const options = {
+        plugins: {
+            legend: {
+                position: 'top',
+                Alignment: 'start'
+            },
+            title: {
+                display: true,
+                text: 'Expense by Categories',
+                color: "#006770",
+                position: "top",
+                font: {
+                    family: 'mooli',
+                    size: 18
+                }
+            },
+            datalabels: {
+                anchor: 'center',
+                align: 'center',
+                font: {
+                    weight: 'bold',
+                    size: '18',
+                    family: 'mooli'
+                }
+            }
+        },
+    };
     const data = {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [
@@ -13,12 +45,12 @@ export default function PieChart() {
                 label: '# of Votes',
                 data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 99, 132)',
+                    'rgba(54, 162, 235)',
+                    'rgba(255, 206, 86)',
+                    'rgba(75, 192, 192)',
+                    'rgba(153, 102, 255)',
+                    'rgba(255, 159, 64)',
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
@@ -35,7 +67,7 @@ export default function PieChart() {
     return (
         <>
             <div className='Pie-chart'>
-                <Pie data={data} />;
+                <Doughnut options={options} data={data} />
             </div>
         </>
     )

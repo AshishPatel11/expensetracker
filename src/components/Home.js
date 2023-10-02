@@ -56,7 +56,7 @@ function Home() {
                             <NewReminder />
                         </div>
                     }
-                    <div class="chart-container">
+                    <div className="chart-container">
                         <BarChart />
                         <PieChart />
                     </div>

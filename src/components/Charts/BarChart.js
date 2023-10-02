@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -21,7 +21,42 @@ ChartJS.register(
 );
 
 export default function BarChart() {
+    const [ChartData, setChartData] = useState([])
+    const [LabelData, setLabelData] = useState([])
+    const [Dataset, setDataSet] = useState([])
 
+
+    useEffect(() => {
+        const label = ChartData.map((item, index) => {
+            return item._id
+        })
+        const data = ChartData.map((item, index) => {
+            return item.totalExpense
+        })
+        setDataSet(data)
+        setLabelData(label)
+    }, [ChartData])
+
+    useEffect(() => {
+        const fetchAPI = async () => {
+            const response = await fetch("http://localhost:5000/api/BarChart", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify()
+            });
+            let apiObj = await response.json();
+            console.log(apiObj)
+            if (apiObj.error) {
+                setChartData({ message: "No Data Available!!" })
+            }
+            else if (apiObj[0]) {
+                setChartData(apiObj)
+            }
+        }
+        fetchAPI();
+    }, [])
 
     const options = {
         responsive: true,
@@ -36,31 +71,43 @@ export default function BarChart() {
                 display: true,
                 text: 'Expense Report',
                 color: "#006770",
-                position: "top"
+                position: "top",
+                align: 'start',
+                font: {
+                    family: 'mooli',
+                    size: 18
+                }
             },
         },
     };
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Augest', 'September', 'October', 'November', 'December'];
+    const labels = LabelData
     const data = {
         labels,
         datasets: [
             {
-                label: 'Dataset 1',
-                data: [10, 20, 30, 50, 60, 70, 80, 20, 60, 50, 60, 80],
+                label: 'Expense',
+                data: Dataset,
                 backgroundColor: '#006770a1',
                 borderRadius: "4",
             },
             {
-                label: 'Dataset 2',
-                data: [50, 20, 30, 50, 60, 70, 80, 50, 60, 70, 90, 10],
+                label: 'Budget',
+                data: Dataset,
                 backgroundColor: '#00adbca1',
                 borderRadius: "4",
             },
         ],
     };
-
-
+    // if (ChartData[0].message) {
+    //     return (
+    //         <>
+    //             <div className='Bat-chart'>
+    //                 {/* <h1>{ChartData[0].message}</h1> */}
+    //             </div>
+    //         </>
+    //     )
+    // }
     return (
 
         <>
@@ -70,3 +117,29 @@ export default function BarChart() {
         </>
     )
 }
+
+
+
+
+// db.expenses.aggregate([
+//     {
+//         $match: {
+//             // Add any specific filters here if needed
+//         }
+//     },
+//     {
+//         $project: {
+//             yearMonth: { $dateToString: { format: "%Y-%m", date: "$ExpenseDate" } },
+//             ExpenseAmount: 1
+//         }
+//     },
+//     {
+//         $group: {
+//             _id: "$yearMonth",
+//             totalExpense: { $sum: "$ExpenseAmount" }
+//         }
+//     },
+//     {
+//         $sort: { _id: 1 } // Sort by year and month
+//     }
+// ])

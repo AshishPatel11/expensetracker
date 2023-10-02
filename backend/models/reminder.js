@@ -18,14 +18,18 @@ const ReminderSchema = new Schema({
         type: Number,
         required: true
     },
-    Category:{
+    Category: {
         type: String,
         required: true
     },
-    ReminderDate:{
+    ReminderDate: {
         type: Date,
         required: true
-    }
+    },
+    uid: {
+        type: String,
+        required: true
+    },
 });
 
 //exporting the model module

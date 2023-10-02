@@ -10,7 +10,6 @@ const Head = () => {
         let UserSession = JSON.parse(localStorage.getItem("user"));
         if (UserSession) {
             setUserData(UserSession)
-
         }
     }, [])
 
