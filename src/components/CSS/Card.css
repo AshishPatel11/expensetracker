@@ -18,7 +18,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .card-btn {
@@ -50,4 +50,28 @@
 
 .card-btn:active * {
     stroke: #006770;
+}
+
+.more-option svg {
+    cursor: pointer;
+}
+
+.option-list {
+    position: absolute;
+    background-color: #d5d5d5;
+    color: #006770;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: none;
+}
+
+.more-option:hover .option-list {
+    display: block;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

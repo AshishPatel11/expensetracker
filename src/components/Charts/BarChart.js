@@ -11,6 +11,7 @@ import {
 
 import { Bar } from 'react-chartjs-2';
 import '../CSS/Chart.css'
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -24,7 +25,7 @@ export default function BarChart() {
     const [ChartData, setChartData] = useState([])
     const [LabelData, setLabelData] = useState([])
     const [Dataset, setDataSet] = useState([])
-
+    console.log(LabelData, Dataset)
 
     useEffect(() => {
         if (ChartData) {
@@ -32,13 +33,16 @@ export default function BarChart() {
             const label = ChartData.map((item, index) => {
                 return item._id
             })
+
             const data = ChartData.map((item, index) => {
                 return item.totalExpense
             })
+
             setDataSet(data)
             setLabelData(label)
         }
     }, [ChartData])
+
 
     useEffect(() => {
         const fetchAPI = async () => {
@@ -54,7 +58,7 @@ export default function BarChart() {
                 setChartData(null)
             }
             else if (apiObj[0]) {
-                setChartData(apiObj)
+                setChartData(apiObj) 
             }
         }
         fetchAPI();
@@ -62,8 +66,8 @@ export default function BarChart() {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: 'true',
-        // aspectRatio: 1 | 3,
+        maintainAspectRatio: true,
+        // aspectRatio: 1 | 2,
         plugins: {
             legend: {
                 position: 'top',
@@ -84,6 +88,7 @@ export default function BarChart() {
     };
 
     const labels = LabelData
+
     const data = {
         labels,
         datasets: [
@@ -111,7 +116,6 @@ export default function BarChart() {
         )
     }
     return (
-
         <>
             <div className='Bar-chart'>
                 <Bar options={options} data={data} />

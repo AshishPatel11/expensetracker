@@ -26,7 +26,7 @@ function Home() {
                     </div>
 
                     <div className='Dash-cards'>
-                        <Card heading="Total monthly budget" amount="$ 4,00,000" />
+                        <Card option="more-menu" heading="Total monthly budget" amount="$ 4,00,000" />
                         <Card heading="Total Expense Value" amount="$ 4,00,000" />
                         <Card heading="Today's Expense Value" amount="$ 4,00,000" />
 
