@@ -58,7 +58,7 @@ export default function BarChart() {
                 setChartData(null)
             }
             else if (apiObj[0]) {
-                setChartData(apiObj) 
+                setChartData(apiObj)
             }
         }
         fetchAPI();

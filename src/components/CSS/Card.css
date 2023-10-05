@@ -75,3 +75,11 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.bgt-form {
+    height: 30vh !important;
+    width: 20vw !important;
+}
+.bgt-submit-btn{
+    margin: 30px !important;
+}
