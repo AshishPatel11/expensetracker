@@ -26,6 +26,8 @@
   width: 15vw;
   background-color: #006770;
   padding: 20px 0px;
+  position: fixed;
+  overflow-x: hidden;
 }
 
 .nav-links {
@@ -92,4 +94,8 @@
   margin: 0px 3px 24px 3px;
   border-width: 1px;
   opacity: 0.5;
+}
+
+.dash-container {
+  margin-left: 16vw;
 }

@@ -4,13 +4,21 @@ import { MoreVertical, X } from 'lucide-react'
 
 
 const Card = (props) => {
+    const defaultdata = { BudgetAmt: "" }
     const [updateFormState, setUpdateFormState] = useState(false)
+    const [BudgetData, setBudgetData] = useState(defaultdata)
+
     const showUpdatebudget = (event) => {
         setUpdateFormState(!updateFormState)
         console.log("done")
     }
-    const onChange = () => {
-
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        setBudgetData(defaultdata)
+    }
+    const onChange = (event) => {
+        setBudgetData({ ...BudgetData, [event.target.name]: event.target.value })
     }
     return (
         <>
@@ -38,11 +46,11 @@ const Card = (props) => {
                         <X onClick={() => { setUpdateFormState(false) }} color="#666666" strokeWidth={3} />
                     </div>
                     <div className='exp-form'>
-                        <form >
+                        <form onSubmit={handleSubmit}>
                             <div className='seprator'>
                                 <div className="">
                                     <label className="lable-tag" htmlFor="ExpenseName">Budget Amount</label>
-                                    <input className="input-tag" value={"ExpenseData.ExpenseName"} onChange={onChange} name="ExpenseName" required type="text" id="ExpenseName" placeholder="Expense Name" />
+                                    <input className="input-tag" value={BudgetData.BudgetAmt} onChange={onChange} name="BudgetAmt" required type="text" id="ExpenseName" placeholder="Expense Name" />
                                     <div className="expense-submit">
                                         <button type="submit" className="expense-submit-btn bgt-submit-btn">Submit</button>
                                     </div>

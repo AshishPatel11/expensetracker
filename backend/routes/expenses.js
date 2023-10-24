@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Expenses = require('../models/expenses')
+const Budget = require('../models/budget')
 
 //Add new Expense API endpoint
 router.post('/expenses', async (req, res) => {
@@ -137,4 +138,28 @@ router.post('/PieChart', async (req, res) => {
     }
 })
 
+router.post('/setBudget', async (req, res) => {
+    try {
+        function generateEid() {
+            return Date.now();
+        }
+        let Bid = generateEid();
+
+        let newBudget = await Budget.create({
+            BudgetId: Bid,
+            budgetAmt: Number(req.body.BudgetAmt),
+            uid: req.body.uid,
+        });
+
+        if (newBudget) {
+            res.json(newBudget)
+        }
+        else {
+            res.json({ error: "Something went wrong!!" })
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+        console.log(error.message)
+    }
+})
 module.exports = router

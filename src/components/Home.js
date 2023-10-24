@@ -8,6 +8,7 @@ import NewExpense from './Expenses/NewExpense';
 import NewReminder from './Expenses/NewReminder';
 import BarChart from './Charts/BarChart';
 import PieChart from './Charts/PieChart';
+import ExpenseTable from './Expenses/ExpenseTable'
 
 function Home() {
     const [Expenseform, setExpenseform] = useState(false);
@@ -59,6 +60,11 @@ function Home() {
                     <div className="chart-container">
                         <BarChart />
                         <PieChart />
+                    </div>
+                    <div>
+                        <div className='recent-container'>
+                            <ExpenseTable />
+                        </div>
                     </div>
                 </div>
             </div >
