@@ -9,6 +9,7 @@ import NewReminder from './Expenses/NewReminder';
 import BarChart from './Charts/BarChart';
 import PieChart from './Charts/PieChart';
 import ExpenseTable from './Expenses/ExpenseTable'
+import ReminderTable from './Reminders/ReminderTable'
 
 function Home() {
     const [Expenseform, setExpenseform] = useState(false);
@@ -63,7 +64,7 @@ function Home() {
                     </div>
                     <div>
                         <div className='recent-container'>
-                            <ExpenseTable />
+                            <ReminderTable head="Recent Expenses" />
                         </div>
                     </div>
                 </div>

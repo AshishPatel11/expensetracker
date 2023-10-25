@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import '../CSS/ExpenseTable.css'
-const ExpenseTable = (props) => {
+const ReminderTable = (props) => {
     const [ExpenseData, setExpenseData] = useState([])
 
     useEffect(() => {
         const fetchAPI = async () => {
-            const response = await fetch("http://localhost:5000/api/ExpHistory", {
+            const response = await fetch("http://localhost:5000/api/RemHistory", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ const ExpenseTable = (props) => {
 
     return (
         <>
-            <h3 className='history-tagname'>{props.head ? props.head : "Expense History"} </h3>
+            <h3 className='history-tagname'>Remiders</h3>
             <div className='Table-container'>
                 <table className='Expense-tbl'>
                     <thead className='tbl-head'>
@@ -33,8 +33,7 @@ const ExpenseTable = (props) => {
                             <th className='tbl-hcolumn'>Expense Name</th>
                             <th className='tbl-hcolumn'>Expense Amount</th>
                             <th className='tbl-hcolumn'>Category</th>
-                            <th className='tbl-hcolumn'>Expense Date</th>
-                            <th className='tbl-hcolumn'>Description</th>
+                            <th className='tbl-hcolumn'>Reminder Date</th>
                         </tr>
                     </thead>
                     <tbody className='tbl-body'>
@@ -43,8 +42,7 @@ const ExpenseTable = (props) => {
                                 <td className='tbl-data'>{expense.ExpenseName}</td>
                                 <td className='tbl-data'>₹{expense.ExpenseAmount}</td>
                                 <td className='tbl-data'>{expense.Category}</td>
-                                <td className='tbl-data'>{new Date(expense.ExpenseDate).toLocaleDateString()}</td>
-                                <td className='tbl-data'>{expense.ExpenseDescription}</td>
+                                <td className='tbl-data'>{new Date(expense.ReminderDate).toLocaleDateString()}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -54,4 +52,4 @@ const ExpenseTable = (props) => {
     )
 }
 
-export default ExpenseTable
+export default ReminderTable
