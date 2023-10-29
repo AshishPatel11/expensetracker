@@ -9,6 +9,7 @@ const Nav = () => {
             <nav className='nav-container'>
                 <div className="logo-container">
                     {/* <img className='logo-svg' src={logo} alt='logo'></img> */}
+
                     <h1 className='logo-title'>Expenzify</h1>
                     <sup>
                         <img className='super-image' src={scrimg} alt='super script'></img>

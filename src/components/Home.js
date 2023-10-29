@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from './Nav';
 import Head from './Head';
 import { BellPlus, PlusCircle, X } from 'lucide-react'
@@ -14,7 +14,22 @@ import ReminderTable from './Reminders/ReminderTable'
 function Home() {
     const [Expenseform, setExpenseform] = useState(false);
     const [ReminderForm, setReminderForm] = useState(false);
-
+    const [budgetData, setBudgetData] = useState({});
+    console.log(budgetData)
+    const user = JSON.parse(localStorage.getItem("user"))
+    useEffect(() => {
+        const getBudgetData = async () => {
+            let response = await fetch("http://localhost:5000/api/getBudget", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ uid: user.uid })
+            })
+            setBudgetData(await response.json())
+        }
+        getBudgetData();
+    }, [])
     return (
         <>
             <LoginAuth />
@@ -28,7 +43,7 @@ function Home() {
                     </div>
 
                     <div className='Dash-cards'>
-                        <Card option="more-menu" heading="Total monthly budget" amount="$ 4,00,000" />
+                        <Card option="more-menu" heading="Total monthly budget" amount={budgetData.BudgetAmt ? "₹ " + budgetData.BudgetAmt : "amount not set"} />
                         <Card heading="Total Expense Value" amount="$ 4,00,000" />
                         <Card heading="Today's Expense Value" amount="$ 4,00,000" />
 

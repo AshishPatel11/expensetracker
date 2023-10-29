@@ -137,26 +137,55 @@ router.post('/PieChart', async (req, res) => {
         console.log(error.message)
     }
 })
-
+//setting the budget data
 router.post('/setBudget', async (req, res) => {
     try {
         function generateEid() {
             return Date.now();
         }
         let Bid = generateEid();
-
-        let newBudget = await Budget.create({
-            BudgetId: Bid,
-            budgetAmt: Number(req.body.BudgetAmt),
-            uid: req.body.uid,
-        });
-
-        if (newBudget) {
-            res.json(newBudget)
+        let existBudget = await Budget.findOne({ uid: req.body.uid })
+        if (existBudget) {
+            let updateData = await Budget.updateOne({ uid: req.body.uid }, { BudgetAmt: Number(req.body.BudgetAmt) })
+            if (updateData) {
+                res.json(updateData)
+            }
+            else {
+                res.json({ error: "Something went wrong!!" })
+            }
         }
         else {
-            res.json({ error: "Something went wrong!!" })
+
+            let newBudget = await Budget.create({
+                BudgetId: Bid,
+                BudgetAmt: Number(req.body.BudgetAmt),
+                uid: req.body.uid,
+            });
+            if (newBudget) {
+                res.json(newBudget)
+            }
+            else {
+                res.json({ error: "Something went wrong!!" })
+            }
         }
+
+    } catch (error) {
+        res.status(500).send(error.message);
+        console.log(error.message)
+    }
+})
+
+//get the budget data
+router.post('/getBudget', async (req, res) => {
+    try {
+        let BudgetData = await Budget.findOne({ uid: req.body.uid })
+        if (BudgetData) {
+            res.json(BudgetData)
+        }
+        else {
+            res.json({ error: "No Data Found" })
+        }
+
     } catch (error) {
         res.status(500).send(error.message);
         console.log(error.message)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CSS/Card.css'
 import { MoreVertical, X } from 'lucide-react'
 
@@ -7,19 +7,35 @@ const Card = (props) => {
     const defaultdata = { BudgetAmt: "" }
     const [updateFormState, setUpdateFormState] = useState(false)
     const [BudgetData, setBudgetData] = useState(defaultdata)
-
+    const user = JSON.parse(localStorage.getItem("user"))
     const showUpdatebudget = (event) => {
         setUpdateFormState(!updateFormState)
         console.log("done")
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        
+        let response = await fetch("http://localhost:5000/api/setBudget", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ...BudgetData, uid: user.uid })
+        })
+        let apiObj = await response.json()
+        console.log(apiObj)
+        if (apiObj.error) {
+            alert(apiObj.error)
+        }
+        else {
+            alert("Budget Updates successfully")
+        }
         setBudgetData(defaultdata)
     }
     const onChange = (event) => {
         setBudgetData({ ...BudgetData, [event.target.name]: event.target.value })
     }
+
+
     return (
         <>
             <div className='card-container'>
