@@ -13,10 +13,12 @@ import ReminderTable from './Reminders/ReminderTable'
 
 function Home() {
     const [Expenseform, setExpenseform] = useState(false);
+    const [ExpenseData, setExpenseData] = useState([])
     const [ReminderForm, setReminderForm] = useState(false);
     const [budgetData, setBudgetData] = useState({});
-    console.log(budgetData)
     const user = JSON.parse(localStorage.getItem("user"))
+
+    //getting the Budget data
     useEffect(() => {
         const getBudgetData = async () => {
             let response = await fetch("http://localhost:5000/api/getBudget", {
@@ -30,6 +32,31 @@ function Home() {
         }
         getBudgetData();
     }, [])
+
+    //fetching the data for displaying total Expnese and daily Expense amount
+    useEffect(() => {
+        const fetchAPI = async () => {
+            const response = await fetch("http://localhost:5000/api/ExpHistory", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(JSON.parse(localStorage.getItem("user")))
+            });
+            const apiObj = await response.json()
+            if (apiObj.error) {
+                setExpenseData([]);
+            }
+            else {
+                setExpenseData(apiObj);
+            }
+        }
+        fetchAPI()
+    }, [])
+    let totalExpense = ExpenseData.reduce((total, expense) => total + expense.ExpenseAmount, 0)
+    let todayExpense = ExpenseData.filter((expense) => new Date(expense.ExpenseDate).toDateString() === new Date().toDateString()).reduce((total, expense) => total + expense.ExpenseAmount, 0)
+
+
     return (
         <>
             <LoginAuth />
@@ -43,9 +70,9 @@ function Home() {
                     </div>
 
                     <div className='Dash-cards'>
-                        <Card option="more-menu" heading="Total monthly budget" amount={budgetData.BudgetAmt ? "₹ " + budgetData.BudgetAmt : "amount not set"} />
-                        <Card heading="Total Expense Value" amount="$ 4,00,000" />
-                        <Card heading="Today's Expense Value" amount="$ 4,00,000" />
+                        <Card option="more-menu" heading="Total monthly budget" amount={budgetData.BudgetAmt ? "₹ " + budgetData.BudgetAmt.toLocaleString("en-IN") : "amount not set"} />
+                        <Card heading="Total Expense Value" amount={"₹ " + totalExpense.toLocaleString("en-IN")} />
+                        <Card heading="Today's Expense Value" amount={"₹ " + todayExpense.toLocaleString("en-IN")} />
 
                         <div className='card-container'>
                             <div className='card-data btn-container'>

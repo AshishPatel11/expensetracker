@@ -19,7 +19,6 @@ const NewExpense = () => {
     const [UserData, setUserData] = useState({})
     const [imagereset, setImagereset] = useState("initial")
 
-    console.log(ExpenseData)
     useEffect(() => {
         let UserSession = JSON.parse(localStorage.getItem("user"));
         if (UserSession) {

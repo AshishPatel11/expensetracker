@@ -93,7 +93,11 @@ export default function PieChart() {
                     'rgba(75, 192, 192)',
                     'rgba(153, 102, 255)',
                     'rgba(255, 159, 64)',
+                    'rgba(38, 70, 83)',
+                    'rgba(42, 157, 143)',
+                    'rgba(222, 219, 210)',
                 ],
+
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -101,6 +105,9 @@ export default function PieChart() {
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
+                    'rgba(38, 70, 83)',
+                    'rgba(42, 157, 143)',
+                    'rgba(222, 219, 210)',
                 ],
                 borderWidth: 1,
             },

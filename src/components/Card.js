@@ -8,9 +8,9 @@ const Card = (props) => {
     const [updateFormState, setUpdateFormState] = useState(false)
     const [BudgetData, setBudgetData] = useState(defaultdata)
     const user = JSON.parse(localStorage.getItem("user"))
+
     const showUpdatebudget = (event) => {
         setUpdateFormState(!updateFormState)
-        console.log("done")
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -22,7 +22,6 @@ const Card = (props) => {
             body: JSON.stringify({ ...BudgetData, uid: user.uid })
         })
         let apiObj = await response.json()
-        console.log(apiObj)
         if (apiObj.error) {
             alert(apiObj.error)
         }

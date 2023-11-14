@@ -25,7 +25,6 @@ export default function BarChart() {
     const [ChartData, setChartData] = useState([])
     const [LabelData, setLabelData] = useState([])
     const [Dataset, setDataSet] = useState([])
-    console.log(LabelData, Dataset)
 
     useEffect(() => {
         if (ChartData) {

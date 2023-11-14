@@ -9,7 +9,6 @@ function Login() {
     const [UserData, setUserData] = useState({});
     const [Loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    console.log(UserData)
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem("user"));
         if (user) {

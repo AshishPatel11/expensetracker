@@ -6,7 +6,8 @@ import LoginAuth from './LoginAuth';
 import ExpenseTable from './Expenses/ExpenseTable';
 
 function ExpenseHistory() {
-  const [ExpenseData, setExpenseData] = useState();
+  const [ExpenseData, setExpenseData] = useState({});
+  const [SearchData, setSearchData] = useState();
   const [UserData, setUserData] = useState({})
 
 
@@ -16,6 +17,12 @@ function ExpenseHistory() {
   const CategoryList = Category.map((item, index) => {
     return <option key={index} value={item}> {item} </option>
   })
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    setSearchData(ExpenseData.search ? ExpenseData.search : "")
+    console.log(ExpenseData)
+  }
 
   const onChange = event => {
     setExpenseData({ ...ExpenseData, [event.target.name]: event.target.value })
@@ -32,12 +39,14 @@ function ExpenseHistory() {
           <div>
             <Head message="Expense" />
             <div className='filter-container'>
-              <input className='search-box' type="text" placeholder="Search..." />
-              <button className='search-button'>Search</button>
-              <select className='select' onChange={onChange} ><option hidden>Search by filter</option>{CategoryList}</select>
+              <form onSubmit={handleSubmit}>
+                <input onChange={onChange} name='search' className='search-box' type="text" placeholder="Search..." />
+                <button type='submit' className='search-button'>Search</button>
+              </form>
+              <select className='select' name='ExpenseCategory' onChange={onChange} ><option hidden>Search by filter</option>{CategoryList}</select>
             </div>
             <div className='history-container'>
-              <ExpenseTable />
+              <ExpenseTable search={SearchData} category={ExpenseData} />
             </div>
           </div>
         </div>
