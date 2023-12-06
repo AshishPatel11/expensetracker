@@ -47,12 +47,12 @@ const Nav = () => {
 
                             <li className='link-list'>
                                 <div>
-                                    <Link to='/home'>
+                                    <Link to='/chats'>
                                         <div className='link-grid'>
                                             <span>
                                                 <Wallet color="#f0f0f0" />
                                             </span>
-                                            <p className='link-text'>Income</p>
+                                            <p className='link-text'>Group Chat</p>
                                         </div>
                                     </Link>
                                 </div>
