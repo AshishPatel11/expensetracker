@@ -34,6 +34,7 @@ const ReminderTable = (props) => {
                             <th className='tbl-hcolumn'>Expense Amount</th>
                             <th className='tbl-hcolumn'>Category</th>
                             <th className='tbl-hcolumn'>Reminder Date</th>
+                            <th className='tbl-hcolumn'>Status</th>
                         </tr>
                     </thead>
                     <tbody className='tbl-body'>
@@ -43,6 +44,7 @@ const ReminderTable = (props) => {
                                 <td className='tbl-data'>₹{expense.ExpenseAmount}</td>
                                 <td className='tbl-data'>{expense.Category}</td>
                                 <td className='tbl-data'>{new Date(expense.ReminderDate).toLocaleDateString()}</td>
+                                <td className='tbl-data'>{expense.status}</td>
                             </tr>
                         ))}
                     </tbody>

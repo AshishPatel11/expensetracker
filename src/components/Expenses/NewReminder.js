@@ -80,7 +80,7 @@ const NewReminder = () => {
                         </div>
                         <div className="">
                             <label className="lable-tag" htmlFor="ReminderDate">Reminder Date </label>
-                            <input className="input-tag" value={ReminderData.ReminderDate} onChange={onChange} name="ReminderDate" required type="Date" id="ReminderDate" placeholder="Reminder Date" />
+                            <input className="input-tag" value={ReminderData.ReminderDate} onChange={onChange} name="ReminderDate" required type="datetime-local" id="ReminderDate" placeholder="Reminder Date" />
                         </div>
                     </div>
 

@@ -30,6 +30,10 @@ const ReminderSchema = new Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: true
+    }
 });
 
 //exporting the model module

@@ -14,7 +14,7 @@ router.post('/signup', async (req, res) => {
         }
         //function for random user id generate
         function generateUid() {
-
+            
             // Declare a digits variable 
             // which stores all digits
             var digits = '0123456789';
