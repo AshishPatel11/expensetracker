@@ -44,6 +44,9 @@ const ExpenseTable = (props) => {
         }
         SetFileter()
     }, [props.category, props.search])
+    if (props.ExpenseList) {
+        props.ExpenseList(ExpenseData)
+    }
 
 
     return (

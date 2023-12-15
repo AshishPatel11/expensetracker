@@ -60,7 +60,7 @@ const Nav = () => {
 
                             <li className='link-list'>
                                 <div>
-                                    <Link to='/home'>
+                                    <Link to='/reports'>
                                         <div className='link-grid'>
                                             <span>
                                                 <FileBarChart color="#f0f0f0" />

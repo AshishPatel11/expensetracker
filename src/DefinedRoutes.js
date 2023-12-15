@@ -13,7 +13,8 @@ import OtpVerify from './components/OtpVerify';
 import Home from './components/Home';
 import Logout from './components/Logout'
 import ExpenseHistory from './components/ExpenseHistory';
-import ChatPage from './components/ChatBox/ChatPage'
+import ChatPage from './components/ChatBox/ChatPage';
+import Reports from './components/Reports/Reports'
 
 //this component contain all the routes of the website
 function DefinedRoutes() {
@@ -29,6 +30,7 @@ function DefinedRoutes() {
                 <Route path='/Logout' element={<Logout />} />
                 <Route path='/ExpenseHistory' element={<ExpenseHistory />} />
                 <Route path='/chats' element={<ChatPage />} />
+                <Route path='/reports' element={<Reports />} />
 
             </Routes>
 

@@ -33,6 +33,18 @@
     border-bottom: 2px solid #e6fff7;
 }
 
+.margin-space {
+    margin: 34px 0px;
+}
+
+.btn-container {
+    margin: 0px 24px;
+}
+
+.Report-btn {
+    width: 100px !important;
+}
+
 /* .Expense-tbl {
     border: 2px solid #868686;
     border-radius: 8px;

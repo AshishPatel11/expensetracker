@@ -22,6 +22,9 @@ const ReminderTable = (props) => {
         }
         fetchAPI()
     }, [])
+    if (props.Reminderlist) {
+        props.Reminderlist(ExpenseData)
+    }
 
     return (
         <>
@@ -43,7 +46,7 @@ const ReminderTable = (props) => {
                                 <td className='tbl-data'>{expense.ExpenseName}</td>
                                 <td className='tbl-data'>₹{expense.ExpenseAmount}</td>
                                 <td className='tbl-data'>{expense.Category}</td>
-                                <td className='tbl-data'>{new Date(expense.ReminderDate).toLocaleDateString()}</td>
+                                <td className='tbl-data'>{new Date(expense.ReminderDate).toLocaleDateString("en-IN")}</td>
                                 <td className='tbl-data'>{expense.status}</td>
                             </tr>
                         ))}
