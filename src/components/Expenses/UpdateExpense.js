@@ -4,7 +4,7 @@ import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
 import DragDropFiles from './DragDropFile'
 
-const NewExpense = () => {
+const UpdateExpense = (props) => {
     //Hooks defination
     const initialExp = {
         Category: "",
@@ -13,7 +13,7 @@ const NewExpense = () => {
         ExpenseDescription: "",
         ExpenseName: "",
     }
-    const [ExpenseData, setExpenseData] = useState(initialExp);
+    const [ExpenseData, setExpenseData] = useState(props.updateDetails);
     const [Loading, setLoading] = useState(false);
     const [Image, setImage] = useState("")
     const [UserData, setUserData] = useState({})
@@ -40,20 +40,20 @@ const NewExpense = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/expenses", {
+        const response = await fetch("http://localhost:5000/api/updateExpenses", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ ...ExpenseData, Bill: Image, uid: UserData.uid })
+            body: JSON.stringify({ ...ExpenseData, uid: UserData.uid })
         })
 
         let apiObj = await response.json();
-        if (apiObj.ExpenseId) {
+        if (apiObj.success) {
             alert('Your Expense has been added Successfully');
         }
-        else if (apiObj.error) {
-            alert(apiObj.error)
+        else if (apiObj.fail) {
+            alert(apiObj.fail)
         }
         else {
             alert(apiObj.error.message)
@@ -118,4 +118,4 @@ const NewExpense = () => {
     )
 }
 
-export default NewExpense
+export default UpdateExpense

@@ -3,7 +3,8 @@ import '../CSS/NewExpense.css'
 import Lottie from 'lottie-react'
 import Loader from '../assets/loading.json'
 
-const NewReminder = () => {
+
+const UpdateReminder = (props) => {
     //Hooks defination
     const intialRem = {
         Category: "",
@@ -11,7 +12,7 @@ const NewReminder = () => {
         ReminderDate: "",
         ExpenseName: "",
     }
-    const [ReminderData, setReminderData] = useState(intialRem);
+    const [ReminderData, setReminderData] = useState(props.updateDetails);
     const [UserData, setUserData] = useState({})
     const [Loading, setLoading] = useState(false);
     //Genrating the Option tag for the category of option with map
@@ -30,7 +31,7 @@ const NewReminder = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/reminder", {
+        const response = await fetch("http://localhost:5000/api/updateReminder", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -39,11 +40,11 @@ const NewReminder = () => {
         })
 
         let apiObj = await response.json();
-        if (apiObj.ExpenseId) {
-            alert('Your Reminder has been added Successfully');
+        if (apiObj.success) {
+            alert('Your Reminder has been updated Successfully');
         }
-        else if (apiObj.error) {
-            alert(apiObj.error)
+        else if (apiObj.fail) {
+            alert(apiObj.fail)
         }
         else {
             alert(apiObj.error.message)
@@ -59,7 +60,7 @@ const NewReminder = () => {
         <>
             <div className='exp-form'>
                 <form onSubmit={handleSubmit}>
-                    <div className="title"><p>Fill in the appropriate details to log your Reminder.</p></div>
+                    <div className="title"><p>*Make changes as per your need to update the reminder</p></div>
 
                     <div>
                         <div className="">
@@ -100,4 +101,4 @@ const NewReminder = () => {
     )
 }
 
-export default NewReminder
+export default UpdateReminder

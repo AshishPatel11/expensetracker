@@ -8,7 +8,7 @@ router.post('/ExpHistory', async (req, res) => {
     try {
         let ExpHistory = await Expenses.find({
             uid: req.body.uid,
-        }, { "_id": 0, "__v": 0 }).sort({ ExpenseDate: -1 });
+        }, { "_id": 0, "__v": 0, "Bill": 0 }).sort({ ExpenseDate: -1 });
         if (!ExpHistory[0]) {
             res.json({ error: "No Data Found" })
         }

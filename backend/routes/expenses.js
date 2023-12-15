@@ -191,4 +191,27 @@ router.post('/getBudget', async (req, res) => {
         console.log(error.message)
     }
 })
+
+//update Expense 
+router.post('/updateExpenses', async (req, res) => {
+    try {
+        let update = await Expenses.updateOne({ ExpenseId: req.body.ExpenseId }, {
+            ExpenseName: req.body.ExpenseName,
+            ExpenseAmount: Number(req.body.ExpenseAmount),
+            Category: req.body.Category,
+            ExpenseDate: req.body.ExpenseDate,
+            ExpenseDescription: req.body.ExpenseDescription,
+            Bill: req.body.Bill,
+        })
+
+        if (update.matchedCount) {
+            res.json({ success: "Expense updated successfully" })
+        }
+        else {
+            res.json({ fail: "Expense details couldn't update!!" })
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
 module.exports = router

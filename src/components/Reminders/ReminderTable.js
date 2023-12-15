@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
 import '../CSS/ExpenseTable.css'
+import NewExpense from '../Expenses/NewExpense'
+import { X } from 'lucide-react'
+import UpdateReminder from '../Expenses/UpdateReminder'
+
+
 const ReminderTable = (props) => {
     const [ExpenseData, setExpenseData] = useState([])
-
+    const [ReminderForm, setReminderForm] = useState(false);
+    const [Buffer, setBuffer] = useState({})
     useEffect(() => {
         const fetchAPI = async () => {
             const response = await fetch("http://localhost:5000/api/RemHistory", {
@@ -38,6 +44,7 @@ const ReminderTable = (props) => {
                             <th className='tbl-hcolumn'>Category</th>
                             <th className='tbl-hcolumn'>Reminder Date</th>
                             <th className='tbl-hcolumn'>Status</th>
+                            <th className='tbl-hcolumn'>Action</th>
                         </tr>
                     </thead>
                     <tbody className='tbl-body'>
@@ -48,11 +55,21 @@ const ReminderTable = (props) => {
                                 <td className='tbl-data'>{expense.Category}</td>
                                 <td className='tbl-data'>{new Date(expense.ReminderDate).toLocaleDateString("en-IN")}</td>
                                 <td className='tbl-data'>{expense.status}</td>
+                                <td className='tbl-data'><button onClick={() => { setReminderForm(true); setBuffer(expense) }} className='search-button update-btn'>Update</button></td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+            {ReminderForm &&
+                < div className='reminder-form-container'>
+                    <div className='form-head'>
+                        <p className='form-title'>Set Reminder</p>
+                        <X onClick={() => { setReminderForm(false) }} color="#666666" strokeWidth={3} />
+                    </div>
+                    <UpdateReminder updateDetails={Buffer} />
+                </div>
+            }
         </>
     )
 }

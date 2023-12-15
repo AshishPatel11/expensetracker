@@ -13,8 +13,8 @@ import ReminderTable from './Reminders/ReminderTable'
 
 function Home() {
     const [Expenseform, setExpenseform] = useState(false);
-    const [ExpenseData, setExpenseData] = useState([])
     const [ReminderForm, setReminderForm] = useState(false);
+    const [ExpenseData, setExpenseData] = useState([])
     const [budgetData, setBudgetData] = useState({});
     const user = JSON.parse(localStorage.getItem("user"))
 

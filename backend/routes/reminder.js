@@ -60,4 +60,24 @@ router.post('/reminder', async (req, res) => {
         console.log(error.message)
     }
 })
+//update reminder
+router.post('/updateReminder', async (req, res) => {
+    try {
+        let update = await Reminder.updateOne({ ExpenseId: req.body.ExpenseId }, {
+            ExpenseName: req.body.ExpenseName,
+            ExpenseAmount: req.body.ExpenseAmount,
+            Category: req.body.Category,
+            ReminderDate: req.body.ReminderDate,
+        })
+
+        if (update.matchedCount) {
+            res.json({ success: "Reminder updated successfully" })
+        }
+        else {
+            res.json({ fail: "Reminder details couldn't update!!" })
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
 module.exports = router

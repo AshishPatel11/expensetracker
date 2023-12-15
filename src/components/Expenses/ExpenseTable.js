@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react'
 import '../CSS/ExpenseTable.css'
+import UpdateExpense from './UpdateExpense'
+import { X } from 'lucide-react'
 const ExpenseTable = (props) => {
     const [ExpenseData, setExpenseData] = useState([])
     const [Unfiltered, setUnfiltered] = useState([])
+    const [Expenseform, setExpenseform] = useState(false);
+    const [Buffer, setBuffer] = useState({})
 
     //fetching the all expense data
     useEffect(() => {
@@ -61,6 +65,7 @@ const ExpenseTable = (props) => {
                             <th className='tbl-hcolumn'>Category</th>
                             <th className='tbl-hcolumn'>Expense Date</th>
                             <th className='tbl-hcolumn'>Description</th>
+                            <th className='tbl-hcolumn'>Action</th>
                         </tr>
                     </thead>
                     <tbody className='tbl-body'>
@@ -71,11 +76,21 @@ const ExpenseTable = (props) => {
                                 <td className='tbl-data'>{expense.Category}</td>
                                 <td className='tbl-data'>{new Date(expense.ExpenseDate).toLocaleDateString("en-IN")}</td>
                                 <td className='tbl-data'>{expense.ExpenseDescription}</td>
+                                <td className='tbl-data'><button onClick={() => { setExpenseform(true); setBuffer(expense) }} className='search-button update-btn'>Update</button></td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+            {Expenseform &&
+                < div className='Exp-form-container'>
+                    <div className='form-head'>
+                        <p className='form-title'>New Expense</p>
+                        <X onClick={() => { setExpenseform(false) }} color="#666666" strokeWidth={3} />
+                    </div>
+                    <UpdateExpense updateDetails={Buffer} />
+                </div>
+            }
         </>
     )
 }

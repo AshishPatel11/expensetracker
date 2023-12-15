@@ -45,6 +45,11 @@
     width: 100px !important;
 }
 
+.update-btn {
+    height: 32px !important;
+    font-size: small !important;
+}
+
 /* .Expense-tbl {
     border: 2px solid #868686;
     border-radius: 8px;
