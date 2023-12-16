@@ -8,7 +8,6 @@ import NewExpense from './Expenses/NewExpense';
 import NewReminder from './Expenses/NewReminder';
 import BarChart from './Charts/BarChart';
 import PieChart from './Charts/PieChart';
-import ExpenseTable from './Expenses/ExpenseTable'
 import ReminderTable from './Reminders/ReminderTable'
 
 function Home() {

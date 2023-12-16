@@ -15,6 +15,7 @@ import Logout from './components/Logout'
 import ExpenseHistory from './components/ExpenseHistory';
 import ChatPage from './components/ChatBox/ChatPage';
 import Reports from './components/Reports/Reports'
+import Settings from './components/Settings'
 
 //this component contain all the routes of the website
 function DefinedRoutes() {
@@ -31,6 +32,7 @@ function DefinedRoutes() {
                 <Route path='/ExpenseHistory' element={<ExpenseHistory />} />
                 <Route path='/chats' element={<ChatPage />} />
                 <Route path='/reports' element={<Reports />} />
+                <Route path='/settings' element={<Settings />} />
 
             </Routes>
 

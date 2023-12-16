@@ -14,7 +14,7 @@ router.post('/signup', async (req, res) => {
         }
         //function for random user id generate
         function generateUid() {
-            
+
             // Declare a digits variable 
             // which stores all digits
             var digits = '0123456789';
@@ -128,5 +128,24 @@ router.post('/updatepass', async (req, res) => {
         res.status(500).send(error.message);
     }
 })
+//Update User detail
+router.post('/updateUser', async (req, res) => {
+    try {
+        let update = await User.updateOne({ uid: req.body.uid }, {
+            userName: req.body.userName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+        })
 
+        if (update.matchedCount) {
+            res.json({ success: "details updated successfully" })
+        }
+        else {
+            res.json({ fail: "Details couldn't update!!" })
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
 module.exports = router

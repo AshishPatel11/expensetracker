@@ -81,7 +81,7 @@ const Nav = () => {
                             <ul>
                                 <li className='link-list'>
                                     <div>
-                                        <Link to='/home'>
+                                        <Link to='/settings'>
                                             <div className='link-grid'>
                                                 <span>
                                                     <Settings color="#f0f0f0" />

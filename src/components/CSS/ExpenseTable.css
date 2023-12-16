@@ -34,7 +34,7 @@
 }
 
 .margin-space {
-    margin: 34px 0px;
+    margin: 34px 0px !important;
 }
 
 .btn-container {
